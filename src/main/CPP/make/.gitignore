@@ -1,0 +1,8 @@
+dyn_main
+static_main
+
+dynamic/DynamicMath.o
+dynamic/libdynmath.dylib
+
+static/StaticMath.o
+static/libstaticmath.a

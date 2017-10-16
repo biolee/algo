@@ -1,0 +1,91 @@
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <version>2.3</version>
+      <configuration>
+        <descriptorRefs>
+          <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+      </configuration>
+      <executions>
+        <execution>
+          <id>make-assembly</id> <!-- this is used for inheritance merges -->
+          <phase>package</phase> <!--  bind to the packaging phase -->
+          <goals>
+            <goal>single</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+  </build>
+```
+
+```bash
+mvn clean compile assembly:single
+```
+
+```xml
+<dependencies>
+  <dependency>
+   <groupId>org.scala-lang</groupId>
+   <artifactId>scala-library</artifactId>
+   <version>2.7.2</version>
+  </dependency>
+ </dependencies>
+
+ <build>
+  <pluginManagement>
+   <plugins>
+    <plugin>
+     <groupId>net.alchim31.maven</groupId>
+     <artifactId>scala-maven-plugin</artifactId>
+     <version>3.2.1</version>
+    </plugin>
+    <plugin>
+     <groupId>org.apache.maven.plugins</groupId>
+     <artifactId>maven-compiler-plugin</artifactId>
+     <version>2.0.2</version>
+    </plugin>
+   </plugins>
+  </pluginManagement>
+  <plugins>
+   <plugin>
+    <groupId>net.alchim31.maven</groupId>
+    <artifactId>scala-maven-plugin</artifactId>
+    <executions>
+     <execution>
+      <id>scala-compile-first</id>
+      <phase>process-resources</phase>
+      <goals>
+       <goal>add-source</goal>
+       <goal>compile</goal>
+      </goals>
+     </execution>
+     <execution>
+      <id>scala-test-compile</id>
+      <phase>process-test-resources</phase>
+      <goals>
+       <goal>testCompile</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <executions>
+     <execution>
+      <phase>compile</phase>
+      <goals>
+       <goal>compile</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
+  </plugins>
+ </build>
+
+```
