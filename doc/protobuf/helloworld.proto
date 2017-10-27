@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+message M1 {
+    int32 a = 1;
+}
+
+message M2 {
+    double f_double = 1;
+    float f_float = 2;
+    int32 f_int32 = 3;
+    int64 d = 4;
+    uint32 e = 5;
+    uint64 f = 6;
+    sint32 f_sint32 = 7;
+    sint64 f_sint64 = 8;
+    fixed32 f_fixed32 = 9;
+    fixed64 f_fixed64 = 10;
+    sfixed32 f_sfixed32 = 11;
+    sfixed64 f_sfixed64 = 12;
+    bool f_bool = 13;
+    string f_string = 14;
+    bytes f_bytes = 15;
+
+    repeated int32 f_repeated_int32 = 16;
+    repeated M1 f_repeated_m1 = 17;
+}
+
+message MessRepeated {
+    repeated int32 f_repeated_int32 = 1;
+    repeated M1 f_repeated_m1 = 2;
+}
+
