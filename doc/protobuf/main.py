@@ -11,9 +11,14 @@ def test_default_value():
 
 
 def test_m2():
-    m = h.M2(f_string="李亚南")
-    m_byte= m.SerializeToString()
+    m = h.M2(f_string="亚")
+    m_byte = m.SerializeToString()
+    field_key = get_filed_key(14, 2)
 
+    m_byte_by_hand = bytes([field_key, 3, ]) + "亚".encode("utf8")
+
+    my_print(m_byte, m_byte_by_hand)
+    assert m_byte == m_byte_by_hand
 
 
 def test_repeated():
@@ -59,6 +64,7 @@ def test_m1():
     field_key = filed_number * 8 + field_type
     field_value = 1
 
+    print("m1")
     my_print(m1.SerializeToString(), bytes([field_key, field_value]))
     assert m1.SerializeToString() == bytes([field_key, field_value])
 
@@ -88,12 +94,25 @@ def max_bit(i):
                 return max_bit
 
 
+def test_utf8():
+    # 亚的unicode是0x4e9a 见http://unicode.scarfboy.com/m/?s=U%2B4E9A
+    assert chr(ord("亚")) == "亚"
+    assert ord("亚") == 0x4e9a
+    if 0x00000800 <= ord("亚") <= 0x0000FFFF:
+        print("亚 will encode in 3 bytes")
+        assert len("亚".encode("utf8")) == 3
+    print("unicode", bin(0x4e9a))
+    print("utf8", [bin(i) for i in "亚".encode("utf8")])
+
+
 def my_print(p, h):
     print("By proto:", [bin(i) for i in p])
     print("By hand :", [bin(i) for i in h])
 
 
 if __name__ == '__main__':
+    test_m2()
+    test_utf8()
     test_repeated()
     test_repeated_pack()
     test_default_value()

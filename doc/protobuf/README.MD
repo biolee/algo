@@ -1,3 +1,43 @@
+# why gRPC?
+
+REST+JSON 是目前web app与api server之间的实施标准, 甚至[angular http](https://angular.io/guide/http)默认将http response解析为json
+然而，gRPC作为server to server, server to client通信有如下优势
+
+1. single ground truth
+
+不论是私有RPC还是REST+JSON的文档（如swagger），文档和实际接口之间依然有滞后，不过得承认swagger能直接在浏览器里调用是有优势的
+
+2. strongly typed
+
+动态语言慢慢加入类型，比如前端使用Typescript的越来越多, Python也开始加入[Type Hints](https://www.python.org/dev/peps/pep-0484/)
+
+gRPC为跨语言的API提供强类型，不会因为跨语言的json序列化差异引入bug
+
+![gRPC web](https://wp.improbable.io/wp-content/uploads/2017/04/blog2-960x342.jpg)
+Google在github上有个[private的项目](https://github.com/grpc/grpc-web), 从[这里](https://github.com/grpc/grpc-experiments/issues/159)申请访问
+实现一个http1的proxy，让浏览器能够直接访问gRPC服务，社区有一个类似可用的[方案](https://github.com/improbable-eng/grpc-web/tree/master/go/grpcweb),并且
+这个项目能自动生成Typescript
+
+另一种思路是个人不太看好的方式，在proto 文件里添加http的标注，生成proxy，比如[googleapis](https://github.com/googleapis/googleapis/blob/master/google/genomics/v1/datasets.proto#L41)
+
+3. 相比JSON性能更高
+
+Protobuf相比JSON编码更紧凑，解析更高效, HTTP2 让网络传输更高效
+
+4. 多语言
+
+gRPC能够自动生成多个语言的client code
+
+5. Standardized Status Codes
+
+6. use case
+- tensorflow serving [prediction service](https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto#L15)
+- etcd ["Simple: well-defined, user-facing API (gRPC)"](https://github.com/coreos/etcd)
+- cockroach ["The primary motivation is to minimize the impact that raft snapshots have on other RPCs (#3013)"](https://github.com/cockroachdb/cockroach/blob/master/docs/RFCS/20151207_grpc.md)
+- tidb [Now we have already used gRPC in TiKV in production for a long time](https://pingcap.github.io/blog/2017/09/12/futuresandgrpc/)
+
+
+# grpc multi language
 [message documentation](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message)
 
 - Basic Operations
@@ -265,7 +305,7 @@
         
             // OutOfRange means operation was attempted past the valid range.
             // E.g., seeking or reading past end of file.
-            //
+     \       //
             // Unlike InvalidArgument, this error indicates a problem that may
             // be fixed if the system state changes. For example, a 32-bit file
             // system will generate InvalidArgument if asked to read at an
@@ -716,6 +756,22 @@ python -m grpc_tools.protoc -I=. --python_out=. --grpc_python_out=. helloworld.p
   </dependencies>
   ...
 </project>
+```
+or generate by commandline
+```bash
+# Compiling grpc java codegen
+# Clone and Change to the `compiler` directory:
+git clone https://github.com/grpc/grpc-java.git ${GRPC_JAVA_ROOT}
+cd ${GRPC_JAVA_ROOT}/compiler
+#Compile the plugin:
+../gradlew java_pluginExecutable
+export PROTOC_GEN_GRPC_JAVA=${GRPC_JAVA_ROOT}/build/exe/java_plugin/protoc-gen-grpc-java
+
+protoc -I=path/to/ptoyo \
+		--plugin=protoc-gen-grpc-java=${PROTOC_GEN_GRPC_JAVA} \
+		--java_out=src/main/java \
+		--grpc-java_out=src/main/java \
+		foo.proto
 ```
 
 ## CPP
