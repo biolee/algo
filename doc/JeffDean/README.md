@@ -161,6 +161,7 @@
 - [2017 BOAT] BOAT: Building auto-tuners with structured Bayesian optimization
 - [2017 MXNET] Scaling Distributed Machine Learning with System and Algorithm Co-design
 ## other reference
+- [1970 B Tree] Organization and Maintenance of Large Ordered Indices
 - [1997] A tutorial on Reed-Solomon coding for fault-tolerance in RAID-like systems
 - [2000 Paxos] Revisiting the Paxos Algorithm
 - [2001 Paxos] Paxos Made Simple
