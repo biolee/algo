@@ -1,12 +1,12 @@
 # 如何写一个装得下Jeff Dean的数据库
 ----------------------------
 # 目录
-- 存储（lsm，b+ leveldb，rocksdb）
+- [第一步 存储 lsm，b+ leveldb，rocksdb](#第一步-存储)
 	- skiplist
 	- lsm
 	- b+
 	- cache bloom filter
-- OLTP
+- [第二步 OLTP](#第二步-oltp)
 	- 分片 一致性协议 写
 		- hash function
 		- round robin
@@ -15,7 +15,7 @@
 		- range partition
 		- paxos，raft
 		- chubby, etcd
-- OLAP
+- [第三步 OLAP](#第三步-olap)
 	- life of sql 查
 		- spanner 
 		- query optimizor
@@ -25,8 +25,9 @@
 		- Parameter Server
 		- spark vs tensorflow vs angel
 	- 硬件加速 GPU FPGA ASIC
-- API
+- [第四步 API](#第四步-api)
 	- sql vs http vs gRPC
+- [Reference](#reference)
 
 # 第一步 存储
 
@@ -130,7 +131,7 @@
 			
 	- 进行major Compaction， 将level n(n>=0)与level n+1层合并
 
-# 第二部 OLTP
+# 第二步 OLTP
 
 # 第三步 OLAP
 
