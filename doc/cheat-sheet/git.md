@@ -87,6 +87,9 @@ git mergetool
 
 ### 内容提交
 ```bash
+ssh-keygen -t rsa
+copy ~/.ssh/id_rsa.pub to git web site
+
 # 查看当前改动提交状态
 git status  
 
@@ -207,3 +210,7 @@ git checkout -b xxx 放入新的分支中
 # 修改commit历史
 git rebase -i HEAD~n
 ```
+
+# gitlab 
+[depoly with docker](https://docs.gitlab.com/omnibus/docker/README.html)
+[configure](https://docs.gitlab.com/omnibus/README.html)

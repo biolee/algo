@@ -64,7 +64,6 @@ def test_m1():
     field_key = filed_number * 8 + field_type
     field_value = 1
 
-    print("m1")
     my_print(m1.SerializeToString(), bytes([field_key, field_value]))
     assert m1.SerializeToString() == bytes([field_key, field_value])
 

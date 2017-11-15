@@ -29,7 +29,13 @@ docker stop/start/restart/rm
 
 ```bash
 docker pull postgres
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysql -e PGDATA=/var/lib/postgresql/data/pgdata  -v /Users/liyanan/dbs/pgdata:/var/lib/postgresql/data -p 5432:5432 -d postgres
+docker run --name some-postgres \
+	-e POSTGRES_PASSWORD=mysql \
+	-e PGDATA=/var/lib/postgresql/data/pgdata  \
+	-v /Users/liyanan/dbs/pgdata:/var/lib/postgresql/data \
+	-p 5432:5432 \
+	-d -it \
+	postgres
 docker stop some-postgres
 # 删除后，如果本地的volume里有文件，则设置的密码无效，原来的密码有效
 docker rm some-postgres
@@ -37,7 +43,13 @@ docker rm some-postgres
 docker pull mysql
 docker stop some-mysql
 docker rm some-mysql 
-docker run --name some-mysql -v /Users/liyanan/dbs/mysql:/var/lib/mysql -v /Users/liyanan/dbs/conf/mysql:/etc/mysql/conf.d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysql -d mysql
+docker run --name some-mysql \
+	-v /Users/liyanan/dbs/mysql:/var/lib/mysql \
+	-v /Users/liyanan/dbs/conf/mysql:/etc/mysql/conf.d \
+	-p 3306:3306 \
+	-e MYSQL_ROOT_PASSWORD=mysql \
+	-d -it \
+	mysql
 docker run --name some-mysql -v /Users/liyanan/dbs/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysql -d mysql
 docker stop some-mysql
 docker rm some-mysql 
@@ -97,7 +109,7 @@ DESCRIBE mysql.user;
 
 CREATE USER 'master'@'%' IDENTIFIED BY 'mypass';
 ALTER USER 'master'@'%' IDENTIFIED BY 'mypass';
-SET PASSWORD FOR 'jeffrey'@'localhost' = 'auth_string';
+SET PASSWORD FOR 'jeffrey'@'localhost' = PASSWORD('auth_string');
 RENAME USER 'jeffrey'@'localhost' TO 'jeff'@'127.0.0.1';
 
 GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
