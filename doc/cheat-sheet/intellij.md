@@ -238,6 +238,7 @@ profile: Mac OS X
 ## custom shortcut
 - open project shift+ctl+cmd+o
 - reopen project shift+ctl+cmd+r
+- close project shift+ctl+cmd+c
 - presentation shift+ctl+cmd+p
 - extraction free shift+ctl+cmd+e
 - spite vertical shift+ctl+cmd+v
