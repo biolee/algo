@@ -36,6 +36,9 @@ gRPC能够自动生成多个语言的client code
 - cockroach ["The primary motivation is to minimize the impact that raft snapshots have on other RPCs (#3013)"](https://github.com/cockroachdb/cockroach/blob/master/docs/RFCS/20151207_grpc.md)
 - tidb [Now we have already used gRPC in TiKV in production for a long time](https://pingcap.github.io/blog/2017/09/12/futuresandgrpc/)
 
+# gRPC Protobuf package 最佳实践
+- [doc](https://github.com/biolee/grpc_starter)
+- [code demo](https://github.com/biolee/grpc_starter)
 
 # grpc multi language
 [message documentation](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message)
