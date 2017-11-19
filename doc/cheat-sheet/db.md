@@ -10,6 +10,7 @@ sudo /etc/init.d/docker start
  
 # centos 7
 vim /etc/systemd/system/docker.service.d/docker.conf
+/usr/lib/systemd/system/docker.service
 
 FROM:
 ExecStart=/usr/bin/docker daemon -H fd://
