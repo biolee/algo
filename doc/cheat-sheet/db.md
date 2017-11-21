@@ -53,7 +53,7 @@ docker run --name some-mysql \
 	mysql
 docker run --name some-mysql -v /Users/liyanan/dbs/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysql -d mysql
 docker stop some-mysql
-docker rm some-mysql 
+docker rm some-mysql
 ```
 
 

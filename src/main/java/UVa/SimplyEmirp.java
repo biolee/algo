@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * An integer greater than 1 is called a prime number if its only positive divisors (factors) are 1 and itself.
  * Prime numbers have been studied over the years by a lot of mathematicians. Applications of prime
  * numbers arise in Cryptography and Coding Theory among others.
@@ -38,25 +40,25 @@ import java.util.Scanner;
 
 public class SimplyEmirp {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		while (input.hasNext()) {
-			String inputGiven = input.next();
-			BigInteger number = new BigInteger(inputGiven);
-			if (!number.isProbablePrime(10)) {
-				System.out.println(number + " is not prime.");
-			} else {
-				String numberReversedAsString = new StringBuilder(
-						number.toString()).reverse().toString();
-				BigInteger numberReversed = new BigInteger(
-						numberReversedAsString);
-				if (numberReversed.isProbablePrime(10)
-						&& numberReversed.compareTo(number) != 0) {
-					System.out.println(number + " is emirp.");
-				} else {
-					System.out.println(number + " is prime.");
-				}
-			}
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
+            String inputGiven = input.next();
+            BigInteger number = new BigInteger(inputGiven);
+            if (!number.isProbablePrime(10)) {
+                System.out.println(number + " is not prime.");
+            } else {
+                String numberReversedAsString = new StringBuilder(
+                        number.toString()).reverse().toString();
+                BigInteger numberReversed = new BigInteger(
+                        numberReversedAsString);
+                if (numberReversed.isProbablePrime(10)
+                        && numberReversed.compareTo(number) != 0) {
+                    System.out.println(number + " is emirp.");
+                } else {
+                    System.out.println(number + " is prime.");
+                }
+            }
+        }
+    }
 }

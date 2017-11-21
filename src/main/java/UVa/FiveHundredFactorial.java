@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * In these days you can more and more often happen to see programs which perform some useful calculations
  * being executed rather then trivial screen savers. Some of them check the system message queue
  * and in case of finding it empty (for examples somebody is editing a file and stays idle for some time)
@@ -43,15 +45,15 @@ import java.util.Scanner;
 
 public class FiveHundredFactorial {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		while (input.hasNext()) {
-			int number = input.nextInt();
-			BigInteger product = BigInteger.ONE;
-			for (int i = 2; i < number + 1; i++) {
-				product = product.multiply(BigInteger.valueOf(i));
-			}
-			System.out.println(number + "!\n" + product);
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
+            int number = input.nextInt();
+            BigInteger product = BigInteger.ONE;
+            for (int i = 2; i < number + 1; i++) {
+                product = product.multiply(BigInteger.valueOf(i));
+            }
+            System.out.println(number + "!\n" + product);
+        }
+    }
 }

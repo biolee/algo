@@ -1,4 +1,6 @@
-package UVa;// There is a bag-like data structure, supporting two operations:
+package uva;
+
+// There is a bag-like data structure, supporting two operations:
 // 	1 x Throw an element x into the bag.
 // 	2 Take out an element from the bag.
 // Given a sequence of operations with return values, you’re going to guess the data structure. It is
@@ -58,10 +60,6 @@ package UVa;// There is a bag-like data structure, supporting two operations:
 // impossible
 // stack
 // priority queue
-
-/**
- * Created by kdn251 on 2/10/17.
- */
 
 import java.util.*;
 import java.io.*;

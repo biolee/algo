@@ -4,11 +4,22 @@
 
 
 ```bash
-docker run -d -it -p 10282:8080 \
+# https://docs.gitlab.com/omnibus/docker/
+docker run -d -it --name some-jenkins \
+    -p 10282:8080 \
 	-p 50000:50000 \
 	-v ${JENKINS_HOME}:/var/jenkins_home
-	registry.docker-cn.com/library/jenkins:2.60.3
+	registry.docker-cn.com/library/jenkins:latest
 # OR
+
+# ubuntu install
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+# Then add the following entry in your /etc/apt/sources.list:/etc/apt/sources.list
+deb https://pkg.jenkins.io/debian-stable binary/
+
+## install and update
+sudo apt-get update
+sudo apt-get install jenkins
 
 #/etc/sysconfig/jenkins
 #/etc/init.d/jenkins

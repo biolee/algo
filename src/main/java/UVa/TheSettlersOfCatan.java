@@ -1,4 +1,6 @@
-package UVa;// Within Settlers of Catan, the 1995 German game of the year, players attempt to dominate an island
+package uva;
+
+// Within Settlers of Catan, the 1995 German game of the year, players attempt to dominate an island
 // by building roads, settlements and cities across its uncharted wilderness.
 // You are employed by a software company that just has decided to develop a computer version of
 // this game, and you are chosen to implement one of the game’s special rules:
@@ -48,7 +50,8 @@ package UVa;// Within Settlers of Catan, the 1995 German game of the year, playe
 // 2
 // 12
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  * Created by kdn251 on 2/20/17.
@@ -65,14 +68,14 @@ public class TheSettlersOfCatan {
         String line;
 
         //iterate while current line is not equal to 0 0
-        while(!(line = br.readLine()).equals("0 0")) {
+        while (!(line = br.readLine()).equals("0 0")) {
 
             //initialize number of nodes and edges
             int nodes = Integer.parseInt(line.split(" ")[0]);
             int edges = Integer.parseInt(line.split(" ")[1]);
 
             //iterate through all edges
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
 
                 //get edge between node x and node y
                 String[] current = br.readLine().split(" ");
@@ -89,7 +92,7 @@ public class TheSettlersOfCatan {
             answer = 0;
 
             //dfs on every node
-            for(int i = 0; i < nodes; i++) {
+            for (int i = 0; i < nodes; i++) {
 
                 dfs(i, 0, nodes);
 
@@ -108,15 +111,15 @@ public class TheSettlersOfCatan {
     public static void dfs(int nd, int l, int nodes) {
 
         //update answer if l is larger than current answer
-        if(l > answer) {
+        if (l > answer) {
 
             answer = l;
 
         }
 
-        for(int i = 0; i < nodes; i++) {
+        for (int i = 0; i < nodes; i++) {
 
-            if(matrix[nd][i] > 0) {
+            if (matrix[nd][i] > 0) {
                 //ensure that edge is not counted twice (like marking as "visited")
                 matrix[nd][i] = 0;
                 matrix[i][nd] = 0;

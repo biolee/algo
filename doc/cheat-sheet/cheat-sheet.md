@@ -3,9 +3,6 @@
 [Requirements](http://central.sonatype.org/pages/requirements.html) 
 [Apache Maven](http://central.sonatype.org/pages/apache-maven.html)
 
-
-
-
 # ubuntu gpu driver
 ```bash
 # 查看显卡信息

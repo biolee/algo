@@ -1,4 +1,6 @@
-package UVa;// These days, you can do all sorts of things online. For example, you can use various websites to make
+package uva;
+
+// These days, you can do all sorts of things online. For example, you can use various websites to make
 // virtual friends. For some people, growing their social network (their friends, their friends’ friends, their
 // friends’ friends’ friends, and so on), has become an addictive hobby. Just as some people collect stamps,
 // other people collect virtual friends.
@@ -28,7 +30,6 @@ package UVa;// These days, you can do all sorts of things online. For example, y
 // 4
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**

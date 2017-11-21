@@ -1,4 +1,6 @@
-package UVa;// We define the operation of splitting
+package uva;
+
+// We define the operation of splitting
 // a binary number n into two numbers
 // a(n), b(n) as follows. Let 0 ≤ i1 < i2 <
 // . . . < ik be the indices of the bits (with
@@ -12,13 +14,13 @@ package UVa;// We define the operation of splitting
 // 010010001 and b = 100100100.
 
 // Input
-    // Each test case consists of a single integer
-    // n between 1 and 231 − 1 written in standard decimal (base 10) format on a single line. Input is
-    // terminated by a line containing ‘0’ which should not be processed.
+// Each test case consists of a single integer
+// n between 1 and 231 − 1 written in standard decimal (base 10) format on a single line. Input is
+// terminated by a line containing ‘0’ which should not be processed.
 
 // Output
-    // The output for each test case consists of a single line, containing the integers a(n) and b(n) separated
-    // by a single space. Both a(n) and b(n) should be written in decimal format.
+// The output for each test case consists of a single line, containing the integers a(n) and b(n) separated
+// by a single space. Both a(n) and b(n) should be written in decimal format.
 
 // Sample Input
 // 6
@@ -30,12 +32,9 @@ package UVa;// We define the operation of splitting
 // 5 2
 // 9 4
 
-/**
- * Created by kdn251 on 2/10/17.
- */
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class SplittingNumbers {
 
@@ -44,20 +43,20 @@ public class SplittingNumbers {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line;
 
-        while((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null) {
 
             //read number
             int number = Integer.parseInt(line);
 
             //terminate if number is zero
-            if(number == 0) break;
+            if (number == 0) break;
 
             //intialize variables
             int count = 0;
             int a = 0;
             int b = 0;
 
-            while(number > 0) {
+            while (number > 0) {
 
 
                 //get lowest set bit
@@ -65,7 +64,7 @@ public class SplittingNumbers {
 
 
                 //if count is even or a with current bit
-                if(count % 2 == 0) {
+                if (count % 2 == 0) {
 
                     a |= currentBit;
 

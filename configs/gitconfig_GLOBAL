@@ -1,0 +1,41 @@
+[diff]
+	tool = meld
+[difftool "meld"]
+	cmd = meld $LOCAL $REMOTE
+[merge]
+	tool = meld
+[mergetool "meld"]
+	cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	st = status
+	unstage = reset HEAD --
+[gitreview]
+	username = biolee
+[core]
+	excludesfile = ${REPO_PATH_ALGO}/configs/gitignore_global
+	editor = vim
+	autocrlf = false
+[pull]
+	rebase = true
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[user]
+	name = liyanan
+	email = liyananfamily@gmail.com
+[color]
+	ui = true
+[push]
+	default = matching
+[http]
+	sslVerify = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

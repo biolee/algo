@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * One of the first users of BIT’s new supercomputer was Chip Diller. He extended his exploration of
  * powers of 3 to go from 0 to 333 and he explored taking various sums of those numbers.
  * “This supercomputer is great,” remarked Chip. “I only wish Timothy were here to see these results.”
@@ -28,16 +30,16 @@ import java.util.Scanner;
 
 public class IntegerInquiry {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		BigInteger sum = BigInteger.ZERO;
-		while (true) {
-			BigInteger number = input.nextBigInteger();
-			if (number.equals(BigInteger.ZERO)) {
-				break;
-			}
-			sum = sum.add(number);
-		}
-		System.out.println(sum);
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        BigInteger sum = BigInteger.ZERO;
+        while (true) {
+            BigInteger number = input.nextBigInteger();
+            if (number.equals(BigInteger.ZERO)) {
+                break;
+            }
+            sum = sum.add(number);
+        }
+        System.out.println(sum);
+    }
 }

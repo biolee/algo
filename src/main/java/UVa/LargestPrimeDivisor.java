@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * All integer numbers are divisible by primes. If a number is divisible by more than one prime number,
  * then it obviously has a largest prime divisor. The numbers which do not fall in this category do not
  * have a largest prime divisor. Given a number N your job is to write a program that finds its largest
@@ -12,7 +14,7 @@ package UVa; /**
  * For each line of the input produce one line of output. This line contains an integer LPD, which is the
  * largest prime divisor of the input number N. If the input number is not divisible by more than one
  * prime number output a ‘-1’.
- * Sample Input 
+ * Sample Input
  * 2
  * 6
  * 100
@@ -28,31 +30,31 @@ import java.util.Scanner;
 
 public class LargestPrimeDivisor {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		long number = input.nextLong();
-		while (number != 0) {
-			number = (long) (Math.abs(number));
-			long largestPrimeDivisor = -1;
-			int numberOfPrimeDivisors = 0;
-			int sqrtOfNumber = (int) (Math.sqrt(number));
-			for (int i = 2; i <= sqrtOfNumber; i++) {
-				if (number % i == 0) {
-					numberOfPrimeDivisors++;
-					largestPrimeDivisor = i;
-					while (number % i == 0) {
-						number = number / i;
-					}
-				}
-			}
-			if (largestPrimeDivisor != -1 && number != 1) {
-				System.out.println(number);
-			} else if (numberOfPrimeDivisors <= 1) {
-				System.out.println(-1);
-			} else {
-				System.out.println(largestPrimeDivisor);
-			}
-			number = input.nextLong();
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        long number = input.nextLong();
+        while (number != 0) {
+            number = (long) (Math.abs(number));
+            long largestPrimeDivisor = -1;
+            int numberOfPrimeDivisors = 0;
+            int sqrtOfNumber = (int) (Math.sqrt(number));
+            for (int i = 2; i <= sqrtOfNumber; i++) {
+                if (number % i == 0) {
+                    numberOfPrimeDivisors++;
+                    largestPrimeDivisor = i;
+                    while (number % i == 0) {
+                        number = number / i;
+                    }
+                }
+            }
+            if (largestPrimeDivisor != -1 && number != 1) {
+                System.out.println(number);
+            } else if (numberOfPrimeDivisors <= 1) {
+                System.out.println(-1);
+            } else {
+                System.out.println(largestPrimeDivisor);
+            }
+            number = input.nextLong();
+        }
+    }
 }

@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * The short story titled Coconuts, by Ben Ames Williams, appeared in the Saturday Evening Post on
  * October 9, 1926. The story tells about five men and a monkey who were shipwrecked on an island.
  * They spent the first night gathering coconuts. During the night, one man woke up and decided to take
@@ -39,33 +41,33 @@ import java.util.Scanner;
 
 public class CoconutsRevisited {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		int i, rez, j;
-		boolean isValid;
-		while (true) {
-			isValid = false;
-			int num = input.nextInt();
-			if (num == -1) {
-				break;
-			}
-			for (i = (int) (Math.sqrt(num) + 1); i > 1; i--) {
-				rez = num;
-				for (j = 0; j < i && rez % i == 1; j++) {
-					rez = rez - rez / i - 1;
-				}
-				if (rez % i == 0 && i == j) {
-					isValid = true;
-					break;
-				}
-			}
-			if (isValid) {
-				System.out.println(num + " coconuts, " + i
-						+ " people and 1 monkey");
-			} else {
-				System.out.println(num + " coconuts, no solution");
-			}
-		}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int i, rez, j;
+        boolean isValid;
+        while (true) {
+            isValid = false;
+            int num = input.nextInt();
+            if (num == -1) {
+                break;
+            }
+            for (i = (int) (Math.sqrt(num) + 1); i > 1; i--) {
+                rez = num;
+                for (j = 0; j < i && rez % i == 1; j++) {
+                    rez = rez - rez / i - 1;
+                }
+                if (rez % i == 0 && i == j) {
+                    isValid = true;
+                    break;
+                }
+            }
+            if (isValid) {
+                System.out.println(num + " coconuts, " + i
+                        + " people and 1 monkey");
+            } else {
+                System.out.println(num + " coconuts, no solution");
+            }
+        }
 
-	}
+    }
 }

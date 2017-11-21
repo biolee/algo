@@ -1,4 +1,5 @@
-package UVa;
+package uva;
+
 /**
  * Given a base b and two non-negative base b integers
  * p and m, compute p mod m and print the

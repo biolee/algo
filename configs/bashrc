@@ -1,0 +1,234 @@
+#!/usr/bin/env bash
+
+## ${HOME}/.bashrc
+#export WORKSPACE="${HOME}/code"
+#export GO_WORKSPACE="${HOME}/golang"
+#export DATA_PATH="${HOME}/dbs"
+#export GOROOT=/usr/local/Cellar/go/1.9.2/libexec
+
+## source this file
+#source ${WORKSPACE}/src/github.com/biolee/algo/configs/bashrc
+
+# --------------- WORKSPACE PATH ------------
+export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+## add workspace bin to path
+export PATH=${WORKSPACE}/bin:$PATH
+# Set higher priority to brew bin
+export PATH="/usr/local/bin:$PATH"
+
+# --------------- repo path ------------
+# repo path
+export REPO_PATH_GITHUB="${WORKSPACE}/src/github.com"
+## biolee
+export REPO_PATH_BIOLEE="${REPO_PATH_GITHUB}/biolee"
+export REPO_PATH_ALGO="${REPO_PATH_BIOLEE}/algo"
+## pingcap
+export REPO_PATH_PINGCAP="${REPO_PATH_GITHUB}/pingcap"
+export REPO_PATH_TIDB="${REPO_PATH_PINGCAP}/tidb"
+export REPO_PATH_TIKV="${REPO_PATH_PINGCAP}/tikv"
+export REPO_PATH_PD="${REPO_PATH_PINGCAP}/pd"
+export REPO_PATH_NEO4J="${REPO_PATH_GITHUB}/neo4j/neo4j"
+export REPO_PATH_CCDB="${REPO_PATH_GITHUB}/cockroachdb/cockroach"
+export REPO_PATH_ETCD="${REPO_PATH_GITHUB}/coreos/etcd"
+## grpc protobuf
+export REPO_PATH_PROTO="${REPO_PATH_GITHUB}/google/protobuf"
+export REPO_PATH_PROTO_GO="${REPO_PATH_GITHUB}/golang/protobuf"
+export REPO_PATH_GRPC_GRPC="${WORKSPACE}/src/github.com/grpc/grpc"
+export REPO_PATH_GRPC_JAVA="${WORKSPACE}/src/github.com/grpc/grpc-java"
+export REPO_PATH_GRPC_GO="${WORKSPACE}/src/google.golang.org/grpc"
+## pbrt
+export REPO_PATH_PBRT="${REPO_PATH_GITHUB}/mmp/pbrt-v3"
+
+export REPO_PATH_UPSPIN="${WORKSPACE}/src/upspin.io"
+export REPO_PATH_K8S="${WORKSPACE}/src/k8s.io/kubernetes"
+export REPO_PATH_PROME="${REPO_PATH_GITHUB}/prometheus/prometheus"
+export REPO_PATH_BRPC="${REPO_PATH_GITHUB}/baidu/brpc"
+export REPO_PATH_TF="${REPO_PATH_GITHUB}/tensorflow/tensorflow"
+export REPO_PATH_TF_SERVING="${REPO_PATH_GITHUB}/tensorflow/serving"
+export REPO_PATH_TF_MODELS="${REPO_PATH_GITHUB}/tensorflow/models"
+
+# --------------- alias ------------
+# ls
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cp='rsync -aht --progress'
+alias gows="cd ${WORKSPACE}"
+alias gogit="cd ${WORKSPACE}/src/github.com"
+alias gogogit="cd ${GO_WORKSPACE}/src/github.com"
+alias gobiolee="cd ${REPO_PATH_BIOLEE}"
+# go to repo
+alias goalgo="cd ${REPO_PATH_ALGO}"
+alias gotidb="cd ${REPO_PATH_TIDB}"
+alias gotf="cd ${REPO_PATH_TF}"
+alias gotfserving="cd ${REPO_PATH_TF_SERVING}"
+alias goneo4j="cd ${REPO_PATH_NEO4J}"
+
+# ps/du
+alias p='ps aux | grep -i'
+alias du1='du -h -d 1 .'
+alias sdu1='sudo du -h -d 1 .'
+alias du2='du -h -d 2 .'
+alias sdu2='sudo du -h -d 2 .'
+
+# ss proxy
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1086"
+alias unsetproxy="unset ALL_PROXY"
+
+# cloc
+alias cloc='tokei -s code'
+
+# Git
+## from arron
+alias gam='git commit --amend --no-edit'
+alias gbv='git branch -av'
+alias gcm='git commit -m'
+alias glg='git log --graph --all --decorate --date=short --pretty=format:"%h %ad %an%x09%s"'
+alias gp='git push'
+alias gpr='git stash && git pull --rebase && git stash pop'
+alias gpo='git push origin HEAD:refs/for/master'
+alias gpm='git push origin +master'
+alias gru='git remote update'
+alias gsl='git stash list'
+alias gss='git stash save'
+alias gst='git status --short'
+alias gitg='nohup gitg > /dev/null 2>&1 &'
+alias gitSync='SyncToUpstream upstream master'
+## from biolee
+alias git.cr='git clone --recursive'
+alias git.pr="git pull --recurse-submodules"
+alias git.sm.add="git submodule add"
+alias git.sm.status="git submodule status --cached --recursive"
+alias git.sm.init="git submodule init"
+alias git.sm.deinit="git submodule deinit"
+alias git.sm.deinitall="git submodule deinit --all"
+alias git.sm.up="git submodule update --init --recursive --jobs 8"
+alias git.sm.sum="git submodule summary"
+
+## GPG
+export GPG_TTY=$(tty)
+## editor
+export EDITOR=$(which vim)
+
+function SyncToUpstream {
+  # E.g.: upstream
+  UPSTREAM=$1
+  # E.g.: master
+  UPSTREAM_BRANCH=$2
+  # E.g.: master
+  LOCAL_BRANCH=$3
+
+  DATE=$(date '+%Y%m%d_%H%M%S')
+  STASH_RESULT=$(git stash save "SyncToUpstream_${DATE}")
+  git fetch ${UPSTREAM} || exit 1
+  git checkout ${LOCAL_BRANCH} || exit 1
+  git reset --hard ${UPSTREAM}/${UPSTREAM_BRANCH} -- || exit 1
+  if [ "${STASH_RESULT}" != 'No local changes to save' ]; then
+    git stash pop
+  fi
+}
+
+# Brew
+alias brewList='brew list; brew cask list'
+alias brewUpdate='brew update && brew cleanup; brew cask cleanup'
+alias brewUpgrade='brew update && brew outdated; brew upgrade'
+
+# docker
+alias reload_docker='docker-machine restart default && docker-machine env default && eval $(docker-machine env default)'
+# docker
+alias do.run="docker run -it --rm –net=host"
+alias do.li="docker image ls"
+alias do.lc="docker container ls"
+alias do.lac="docker container ls -a"
+alias do.cip="docker inspect --format '{{ .NetworkSettings.IPAddress }}' "
+alias do.isp="docker inspect"
+## remove docker images
+alias do.clean.di="docker images --filter "dangling=true" -q --no-trunc | docker rmi"
+alias do.clean.ni="docker images | grep "none" | awk '/ / { print $3 }' | docker rmi"
+alias do.clean.i="do.clean.ni && do.clean.di"
+## delete dangling volumes
+alias do.clean.dv="docker volume ls -qf dangling=true | xargs docker volume rm"
+## remove docker exited containers
+alias do.clean.ec="docker ps -qa --no-trunc --filter "status=exited" | xargs docker rm"
+
+# k8s
+## minikube https://github.com/kubernetes/minikube
+alias miniku="minikube"
+#alias miniku.mac="brew cask install minikube"
+#alias miniku.mac.start="minikube start"
+#alias miniku.linux="curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/"
+#alias miniku.linux.start="miniku start --vm-driver=none"
+alias ku="kubectl"
+alias ku.r="ku run"
+alias ku.proxy="kubectl proxy"
+alias ku.8080="kubectl proxy --address='localhost' --port=8080 --accept-hosts='^*$'"
+alias ku.dashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
+
+## deployment
+alias ku.gd="ku get deployment"
+alias ku.dd="ku describe deployment"
+alias ku.deld="ku delete deployment"
+### Rolling Update
+alias ku.rollup="kubectl rolling-update"
+alias ku.roll.status="kubectl rollout status"
+alias ku.roll.his="kubectl rollout history"
+alias ku.unroll="kubernetes kubectl rollout undo"
+### scale
+alias ku.scale="kubectl scale"
+### set image
+alias ku.set.image="kubectl set image"
+
+## pods
+alias ku.gp="ku get pods"
+alias ku.dp="ku describe pod"
+alias ku.delp="ku delete pod"
+### logs
+alias ku.l="ku logs"
+### exec
+alias ku.e="ku exec pod"
+# service
+alias ku.gs="ku get service"
+alias ku.ds="ku describe service"
+alias ku.dels="ku delete service"
+
+
+
+
+# --------------- multiple lang ------------
+# JAVA
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# anaconda
+export ANACONDA_HOME="${HOME}/anaconda3"
+export PATH="${ANACONDA_HOME}/bin:$PATH"
+
+# CPP
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/opt/opencv3/lib/pkgconfig:${ANACONDA_HOME}/lib/pkgconfig
+
+
+# python
+## ipython
+alias py="ipython --pdb --pprint --color-info --pylab --matplotlib --no-banner --term-title"
+
+# go
+export GOPATH=${GO_WORKSPACE}:${WORKSPACE}
+export PATH=${GOROOT}/bin:$PATH
+export PATH=${GO_WORKSPACE}/bin:$PATH
+
+# rust
+export CARGO_HOME=$HOME/.cargo
+export PATH=${CARGO_HOME}/bin:$PATH
+export RUST_BACKTRACE=1
+# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+# gRPC Java
+export PROTOC_GEN_GRPC_JAVA="${REPO_PATH_GRPC_JAVA}/compiler/build/exe/java_plugin/protoc-gen-grpc-java"
+
+# ----------- util -----------------
+
+export LC_ALL="en_US.UTF-8"
+
+# homebrew
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles

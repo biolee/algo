@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * A particle has initial velocity and acceleration. If its velocity after certain time is v then what will its
  * displacement be in twice of that time?
  * Input
@@ -21,15 +23,15 @@ import java.util.Scanner;
 
 public class HighSchoolPhysics {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		String line = input.nextLine();
-		while (!"".equals(line)) {
-			String[] numbers = line.split(" ");
-			int v = Integer.valueOf(numbers[0]);
-			int t = Integer.valueOf(numbers[1]) * 2;
-			System.out.println(v * t);
-			line = input.nextLine();
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String line = input.nextLine();
+        while (!"".equals(line)) {
+            String[] numbers = line.split(" ");
+            int v = Integer.valueOf(numbers[0]);
+            int t = Integer.valueOf(numbers[1]) * 2;
+            System.out.println(v * t);
+            line = input.nextLine();
+        }
+    }
 }

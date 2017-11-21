@@ -23,64 +23,63 @@ minikube stop
 https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/
 ```
 
+# k8s
+
+https://github.com/feiskyer/kubernetes-handbook/blob/master/SUMMARY.md
+
+## pod
+### 私有镜像
+```bash
+kubectl create secret docker-registry biolee_regsecret --docker-server=<your-registry-server> \
+	--docker-username=<your-name> \
+	--docker-password=<your-pword> \
+	--docker-email=<your-email>
+```
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+	name: private-reg
+spec:
+	containers:
+	- name: private-reg-container
+		image: <your-private-image>
+		imagePullSecrets:
+			- name: biolee_regsecret
+```
+### RestartPoliy 本地重启
+- Always：只要退出就重启
+- OnFailure：失败退出（exit code不等于0）时重启
+- Never：只要退出就不再重启
+### 环境变量
+- HOSTNAME
+
+### ImagePullPolicy
+- Always：不管镜像是否存在都会进行一次拉取
+- Never：不管镜像是否存在都不会进行拉取
+- IfNotPresent：只有镜像不存在时，才会进行镜像拉取
+
+注意：
+
+- 默认为IfNotPresent，但:latest标签的镜像默认为Always。
+- 拉取镜像时docker会进行校验，如果镜像中的MD5码没有变，则不会拉取镜像数据。
+- 生产环境中应该尽量避免使用:latest标签，而开发环境中可以借助:latest标签自动拉取最新的镜像。
 
 # docker 
-
-mirror: `registry.docker-cn.com/library/`
-```bash
-docker volume ls -qf dangling=true | xargs docker volume rm
-
-```
-
-# Docker - How to cleanup (unused) resources
-
-Once in a while, you may need to cleanup resources (containers, volumes, images, networks) ...
-    
-## delete volumes
-    
-    // see: https://github.com/chadoe/docker-cleanup-volumes
-    
-    $ docker volume rm $(docker volume ls -qf dangling=true)
-    $ docker volume ls -qf dangling=true | xargs -r docker volume rm
-    
-## delete networks
-
-    $ docker network ls  
-    $ docker network ls | grep "bridge"   
-    $ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
-    
-## remove docker images
-    
-    // see: http://stackoverflow.com/questions/32723111/how-to-remove-old-and-unused-docker-images
-    
-    $ docker images
-    $ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
-    
-    $ docker images | grep "none"
-    $ docker rmi $(docker images | grep "none" | awk '/ / { print $3 }')
-
-## remove docker containers
-
-    // see: http://stackoverflow.com/questions/32723111/how-to-remove-old-and-unused-docker-images
-    
-    $ docker ps
-    $ docker ps -a
-    $ docker rm $(docker ps -qa --no-trunc --filter "status=exited")
     
 ## Resize disk space for docker vm
     
-    $ docker-machine create --driver virtualbox --virtualbox-disk-size "40000" default
+docker-machine create --driver virtualbox --virtualbox-disk-size "40000" default
  
+add-apt-repository ppa:ubuntu-lxc/lxd-stable
+apt-get update
+apt-get dist-upgrade
+apt-get install lxd
  
- add-apt-repository ppa:ubuntu-lxc/lxd-stable
- apt-get update
- apt-get dist-upgrade
- apt-get install lxd
- 
- # network
- 查看docker容器虚拟ip
- `docker inspect --format '{{ .NetworkSettings.IPAddress }}' [容器ID]`
- 宿主机IP `与容器同网段，而且是XXX.XXX.XXX.1`
+# network
+查看docker容器虚拟ip
+`docker inspect --format '{{ .NetworkSettings.IPAddress }}' [容器ID]`
+宿主机IP `与容器同网段，而且是XXX.XXX.XXX.1`
  docker network ls
  docker network inspect bridge
  

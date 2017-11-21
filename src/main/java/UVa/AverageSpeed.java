@@ -1,5 +1,6 @@
-package UVa;
+package uva;
 
+//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1222
 /**
  * You have bought a car in order to drive from Waterloo to a big city. The odometer on their car is
  * broken, so you cannot measure distance. But the speedometer and cruise control both work, so the car
@@ -28,7 +29,6 @@ package UVa;
  * 00:30:01 50.00 km
  * 03:00:01 200.00 km
  */
-//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1222
 
 import java.text.DecimalFormat;
 import java.util.Scanner;

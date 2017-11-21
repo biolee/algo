@@ -1,4 +1,9 @@
-package UVa;
+package uva;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=654
 
 /**
  * The Antique Comedians of Malidinesia prefer comedies to tragedies. Unfortunately, most of the ancient
@@ -32,12 +37,6 @@ package UVa;
  * 1998
  * 1
  */
-
-//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=654
-
-import java.math.BigInteger;
-import java.util.Scanner;
-
 public class AddingReversedNumbers {
 
     public static void main(String[] args) {

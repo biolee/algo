@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+labels:
+  app: nginx
+name: nginx-default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx
+          imagePullPolicy: Always
+          name: http
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          resources:
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+          initialDelaySeconds: 15
+              timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 1

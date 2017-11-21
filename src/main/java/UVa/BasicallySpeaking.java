@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * The Really Neato Calculator Company, Inc. has recently hired your team to help design their Super
  * Neato Model I calculator. As a computer scientist you suggested to the company that it would be neato
  * if this new calculator could convert among number bases. The company thought this was a stupendous
@@ -45,19 +47,19 @@ import java.util.Scanner;
 
 public class BasicallySpeaking {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		while (input.hasNext()) {
-			String numberAsString = input.next();
-			int fromBase = input.nextInt();
-			int toBase = input.nextInt();
-			BigInteger number = new BigInteger(numberAsString, fromBase);
-			String numberThatIsPrinted = number.toString(toBase);
-			String answer = numberThatIsPrinted.toUpperCase();
-			if (numberThatIsPrinted.length() > 7) {
-				answer = "ERROR";
-			}
-			System.out.printf("%7s\n", answer);
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
+            String numberAsString = input.next();
+            int fromBase = input.nextInt();
+            int toBase = input.nextInt();
+            BigInteger number = new BigInteger(numberAsString, fromBase);
+            String numberThatIsPrinted = number.toString(toBase);
+            String answer = numberThatIsPrinted.toUpperCase();
+            if (numberThatIsPrinted.length() > 7) {
+                answer = "ERROR";
+            }
+            System.out.printf("%7s\n", answer);
+        }
+    }
 }

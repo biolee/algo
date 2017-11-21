@@ -157,7 +157,12 @@ git bisect good|bad
 ### 方法四 查找关键信息的变更，这里给出的是一个大致信息，比如是在其他分支做出的改动
 git show :/KEY-WORD 
 ```
+## submodule
 
+use []() 
+
+```bash
+```
 
 # 不可逆操作
 

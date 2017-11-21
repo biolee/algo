@@ -1,0 +1,31 @@
+pyenv/py?.?
+.DS_Store
+
+# Log files.
+*.log
+nohup.out
+
+# bin
+*.bin
+
+# IDE files.
+.cproject
+.idea
+.project
+.pydevproject
+.settings
+.vscode
+*.iml
+
+# Building files.
+*.o
+*.pyc
+
+# bazel
+bazel-bin
+bazel-out
+bazel-genfiles
+
+# cmake
+cmake-build-debug/
+CMakeFiles

@@ -1,4 +1,4 @@
-package UVa;
+package uva;
 
 /**
  * Calculate

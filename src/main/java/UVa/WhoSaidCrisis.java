@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * The company Assistance for Critical Moments (ACM) is helping other companies to overcome the
  * current economical crisis. As experts in computing machinery, their job is to calculate the cost/benefit
  * balance of the other companies. They receive two numbers, indicating the total amount of benefits and
@@ -33,14 +35,14 @@ import java.util.Scanner;
 
 public class WhoSaidCrisis {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		int numberOfTestCases = input.nextInt();
-		while (numberOfTestCases != 0) {
-			BigInteger first = input.nextBigInteger();
-			BigInteger second = input.nextBigInteger();
-			System.out.println(first.subtract(second));
-			numberOfTestCases--;
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int numberOfTestCases = input.nextInt();
+        while (numberOfTestCases != 0) {
+            BigInteger first = input.nextBigInteger();
+            BigInteger second = input.nextBigInteger();
+            System.out.println(first.subtract(second));
+            numberOfTestCases--;
+        }
+    }
 }

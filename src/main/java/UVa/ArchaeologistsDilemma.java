@@ -1,4 +1,8 @@
-package UVa;
+package uva;
+
+import java.util.Scanner;
+
+//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=642
 
 /**
  * An archeologist seeking proof of the presence of extraterrestrials in the Earth’s past, stumbles upon a
@@ -28,9 +32,6 @@ package UVa;
  * 20
  */
 
-//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=642
-
-import java.util.Scanner;
 
 public class ArchaeologistsDilemma {
 

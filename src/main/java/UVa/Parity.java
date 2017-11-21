@@ -1,4 +1,7 @@
-package UVa; /**
+package uva;
+
+
+/**
  * We define the parity of an integer n as the sum of the bits in binary representation computed modulo
  * two. As an example, the number 21 = 101012 has three 1s in its binary representation so it has parity
  * 3(mod2), or 1.
@@ -28,32 +31,32 @@ import java.util.Scanner;
 
 public class Parity {
 
-	public static void main(String[] args) {
-		while (true) {
-			Scanner input = new Scanner(System.in);
-			int number = input.nextInt();
-			if (number == 0) {
-				break;
-			}
-			String binaryInString = convertToBinary(number);
-			int count = 0;
-			for (int i = 0; i < binaryInString.length(); i++) {
-				if ("1".equals(binaryInString.charAt(i) + "")) {
-					count++;
-				}
-			}
-			System.out.println("The parity of " + binaryInString + " is "
-					+ count + " (mod 2).");
+    public static void main(String[] args) {
+        while (true) {
+            Scanner input = new Scanner(System.in);
+            int number = input.nextInt();
+            if (number == 0) {
+                break;
+            }
+            String binaryInString = convertToBinary(number);
+            int count = 0;
+            for (int i = 0; i < binaryInString.length(); i++) {
+                if ("1".equals(binaryInString.charAt(i) + "")) {
+                    count++;
+                }
+            }
+            System.out.println("The parity of " + binaryInString + " is "
+                    + count + " (mod 2).");
 
-		}
-	}
+        }
+    }
 
-	private static String convertToBinary(int number) {
-		StringBuilder s = new StringBuilder("");
-		while (number != 0) {
-			s = s.append(number % 2);
-			number = number / 2;
-		}
-		return s.reverse().toString();
-	}
+    private static String convertToBinary(int number) {
+        StringBuilder s = new StringBuilder("");
+        while (number != 0) {
+            s = s.append(number % 2);
+            number = number / 2;
+        }
+        return s.reverse().toString();
+    }
 }

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ZSH_THEME="agnoster"
+
+plugins=(git zsh-completions kubectl)

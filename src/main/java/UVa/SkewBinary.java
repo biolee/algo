@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * When a number is expressed in decimal, the k-th digit represents a multiple of 10k. (Digits are numbered
  * from right to left, where the least significant digit is number 0.) For example,
  * 8130710 = 8 × 104 + 1 × 103 + 3 × 102 + 0 × 101 + 7 × 100 = 80000 + 1000 + 300 + 0 + 7 = 81307.
@@ -49,23 +51,23 @@ import java.util.Scanner;
 
 public class SkewBinary {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		while (true) {
-			BigInteger number = input.nextBigInteger();
-			if (number.equals(BigInteger.ZERO)) {
-				break;
-			}
-			int length = (number + "").length();
-			BigInteger sum = BigInteger.ZERO;
-			for (int i = 0; i < length; i++) {
-				BigInteger mod10 = number.mod(BigInteger.TEN);
-				BigInteger insideBrackets = BigInteger.valueOf((long) (Math
-						.pow(2, i + 1) - 1));
-				sum = sum.add((mod10).multiply(insideBrackets));
-				number = number.divide(BigInteger.TEN);
-			}
-			System.out.println(sum);
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            BigInteger number = input.nextBigInteger();
+            if (number.equals(BigInteger.ZERO)) {
+                break;
+            }
+            int length = (number + "").length();
+            BigInteger sum = BigInteger.ZERO;
+            for (int i = 0; i < length; i++) {
+                BigInteger mod10 = number.mod(BigInteger.TEN);
+                BigInteger insideBrackets = BigInteger.valueOf((long) (Math
+                        .pow(2, i + 1) - 1));
+                sum = sum.add((mod10).multiply(insideBrackets));
+                number = number.divide(BigInteger.TEN);
+            }
+            System.out.println(sum);
+        }
+    }
 }

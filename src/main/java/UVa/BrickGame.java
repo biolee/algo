@@ -1,4 +1,6 @@
-package UVa; /**
+package uva;
+
+/**
  * There is a village in Bangladesh, where brick game is very popular. Brick game is a team game. Each
  * team consists of odd number of players. Number of players must be greater than 1 but cannot be
  * greater than 10. Age of each player must be within 11 and 20. No two players can have the same age.
@@ -27,34 +29,34 @@ package UVa; /**
  */
 //https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2986
 
-import static java.lang.Integer.parseInt;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class BrickGame {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		int numberOfTestCases = input.nextInt();
-		int caseNum = 1;
-		while (numberOfTestCases != 0) {
-			String[] numbersString = input.nextLine().split(" ");
-			int numberOfMembers = parseInt(numbersString[0]);
-			List<Integer> numbers = new ArrayList<Integer>();
-			for (int i = 0; i < numberOfMembers + 1; i++) {
-				numbers.add(parseInt(numbersString[i]));
-			}
-			Collections.sort(numbers);
-			System.out.print("Case "
-					+ caseNum
-					+ ": "
-					+ numbers.subList(1, numbers.size()).get(
-							numberOfMembers / 2) + "\n");
-			numberOfTestCases--;
-			caseNum++;
-		}
-	}
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int numberOfTestCases = input.nextInt();
+        int caseNum = 1;
+        while (numberOfTestCases != 0) {
+            String[] numbersString = input.nextLine().split(" ");
+            int numberOfMembers = parseInt(numbersString[0]);
+            List<Integer> numbers = new ArrayList<Integer>();
+            for (int i = 0; i < numberOfMembers + 1; i++) {
+                numbers.add(parseInt(numbersString[i]));
+            }
+            Collections.sort(numbers);
+            System.out.print("Case "
+                    + caseNum
+                    + ": "
+                    + numbers.subList(1, numbers.size()).get(
+                    numberOfMembers / 2) + "\n");
+            numberOfTestCases--;
+            caseNum++;
+        }
+    }
 }
