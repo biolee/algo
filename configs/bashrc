@@ -154,6 +154,7 @@ alias do.clean.ec="docker ps -qa --no-trunc --filter "status=exited" | xargs doc
 # k8s
 ## minikube https://github.com/kubernetes/minikube
 alias miniku="minikube"
+#alias miniku.start="miniku start --vm-driver=virtualbox"
 #alias miniku.mac="brew cask install minikube"
 #alias miniku.mac.start="minikube start"
 #alias miniku.linux="curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/"
@@ -209,11 +210,20 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/opt/opencv3/lib/pkgco
 # python
 ## ipython
 alias py="ipython --pdb --pprint --color-info --pylab --matplotlib --no-banner --term-title"
+export PYTHONPATH=${REPO_PATH_ALGO}/src/main/python:${PYTHONPATH}
 
 # go
 export GOPATH=${GO_WORKSPACE}:${WORKSPACE}
 export PATH=${GOROOT}/bin:$PATH
 export PATH=${GO_WORKSPACE}/bin:$PATH
+function install_go_linux {
+	go_ver="go1.9.2"
+	sudo curl -O https://storage.googleapis.com/golang/${go_ver}.linux-amd64.tar.gz
+	sudo tar -xvf ${go_ver}.linux-amd64.tar.gz
+	sudo rm -rf /usr/local/go
+	sudo mv go /usr/local
+	sudo rm ${go_ver}.linux-amd64.tar.gz
+}
 
 # rust
 export CARGO_HOME=$HOME/.cargo

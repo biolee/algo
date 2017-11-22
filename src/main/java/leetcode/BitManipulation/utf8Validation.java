@@ -3,7 +3,8 @@ package leetcode.BitManipulation;
 // A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:
 
 // For 1-byte character, the first bit is a 0, followed by its unicode code.
-// For n-bytes character, the first n-bits are all one's, the n+1 bit is 0, followed by n-1 bytes with most significant
+// For n-bytes character, the first n-bits are all one's, the n+1 bit is 0, followed by n-1 bytes
+// with most significant
 // 2 bits being 10.
 // This is how the UTF-8 encoding would work:
 
@@ -17,7 +18,8 @@ package leetcode.BitManipulation;
 // Given an array of integers representing the data, return whether it is a valid utf-8 encoding.
 
 // Note:
-// The input is an array of integers. Only the least significant 8 bits of each integer is used to store the data. This
+// The input is an array of integers. Only the least significant 8 bits of each integer is used to
+// store the data. This
 // means each integer represents only 1 byte of data.
 
 // Example 1:
@@ -37,36 +39,32 @@ package leetcode.BitManipulation;
 
 public class utf8Validation {
 
-    public boolean validUtf8(int[] data) {
+  public boolean validUtf8(int[] data) {
 
-        int count = 0;
-        for (int i : data) {
+    int count = 0;
+    for (int i : data) {
 
-            if (count == 0) {
+      if (count == 0) {
 
-                if ((i >> 5) == 0b110) {
-                    count = 1;
-                } else if ((i >> 4) == 0b1110) {
-                    count = 2;
-                } else if ((i >> 3) == 0b11110) {
-                    count = 3;
-                } else if ((i >> 7) == 0b1) {
-                    return false;
-                }
-
-            } else {
-
-                if ((i >> 6) != 0b10) {
-                    return false;
-                }
-                count--;
-
-            }
-
+        if ((i >> 5) == 0b110) {
+          count = 1;
+        } else if ((i >> 4) == 0b1110) {
+          count = 2;
+        } else if ((i >> 3) == 0b11110) {
+          count = 3;
+        } else if ((i >> 7) == 0b1) {
+          return false;
         }
 
-        return count == 0;
+      } else {
 
+        if ((i >> 6) != 0b10) {
+          return false;
+        }
+        count--;
+      }
     }
 
+    return count == 0;
+  }
 }

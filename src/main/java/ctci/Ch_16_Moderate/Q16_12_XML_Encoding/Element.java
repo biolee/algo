@@ -23,7 +23,7 @@ public class Element {
 
   public String getNameCode() {
     if (name == "family") {
-      return "1";
+      return "uva";
     } else if (name == "person") {
       return "2";
     } else if (name == "firstName") {

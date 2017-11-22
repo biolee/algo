@@ -1,8 +1,10 @@
-package leetcode.Trie.addAndSearchWordDataStructureDesign;// Design a data structure that supports the following two operations:
+package leetcode.Trie.addAndSearchWordDataStructureDesign; // Design a data structure that supports
+                                                           // the following two operations:
 
 // void addWord(word)
 // bool algo.search(word)
-// algo.search(word) can algo.search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+// algo.search(word) can algo.search a literal word or a regular expression string containing only
+// letters a-z or .. A . means it can represent any one letter.
 
 // For example:
 
@@ -15,71 +17,62 @@ package leetcode.Trie.addAndSearchWordDataStructureDesign;// Design a data struc
 // algo.search("b..") -> true
 
 // Note:
-    // You may assume that all words are consist of lowercase letters a-z.
+// You may assume that all words are consist of lowercase letters a-z.
 
 public class WordDictionary {
 
-    public class TrieNode {
+  private TrieNode root = new TrieNode();
 
-        public TrieNode[] children = new TrieNode[26];
-        public String item = "";
+  public void addWord(String word) {
 
+    TrieNode node = root;
+
+    for (char c : word.toCharArray()) {
+
+      if (node.children[c - 'a'] == null) {
+
+        node.children[c - 'a'] = new TrieNode();
+      }
+
+      node = node.children[c - 'a'];
     }
-    
-    private TrieNode root = new TrieNode();
 
-    public void addWord(String word) {
+    node.item = word;
+  }
 
-        TrieNode node = root;
+  public boolean search(String word) {
 
-        for (char c : word.toCharArray()) {
+    return match(word.toCharArray(), 0, root);
+  }
 
-            if (node.children[c - 'a'] == null) {
+  private boolean match(char[] chs, int k, TrieNode node) {
 
-                node.children[c - 'a'] = new TrieNode();
-            }
+    if (k == chs.length) return !node.item.equals("");
 
-            node = node.children[c - 'a'];
+    if (chs[k] != '.') {
+
+      return node.children[chs[k] - 'a'] != null && match(chs, k + 1, node.children[chs[k] - 'a']);
+
+    } else {
+
+      for (int i = 0; i < node.children.length; i++) {
+
+        if (node.children[i] != null) {
+
+          if (match(chs, k + 1, node.children[i])) {
+
+            return true;
+          }
         }
-
-        node.item = word;
+      }
     }
 
-    public boolean search(String word) {
+    return false;
+  }
 
-        return match(word.toCharArray(), 0, root);
+  public class TrieNode {
 
-    }
-    
-    private boolean match(char[] chs, int k, TrieNode node) {
-
-        if (k == chs.length) return !node.item.equals(""); 
-
-        if (chs[k] != '.') {
-
-            return node.children[chs[k] - 'a'] != null && match(chs, k + 1, node.children[chs[k] - 'a']);
-
-        } 
-
-        else {
-
-            for (int i = 0; i < node.children.length; i++) {
-
-                if (node.children[i] != null) {
-
-                    if (match(chs, k + 1, node.children[i])) {
-
-                        return true;
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        return false;
-    }
-
+    public TrieNode[] children = new TrieNode[26];
+    public String item = "";
+  }
 }

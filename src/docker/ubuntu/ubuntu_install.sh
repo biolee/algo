@@ -9,4 +9,4 @@ apt-get -y install build-essential \
       wget
 
 apt-get autoremove -y
-pt-get clean
+apt-get clean

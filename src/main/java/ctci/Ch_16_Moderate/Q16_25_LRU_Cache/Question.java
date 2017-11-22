@@ -7,7 +7,7 @@ public class Question {
     int cache_size = 5;
     Cache cache = new Cache(cache_size);
 
-    cache.setKeyValue(1, "1");
+    cache.setKeyValue(1, "uva");
     System.out.println(cache.getCacheAsString());
     cache.setKeyValue(2, "2");
     System.out.println(cache.getCacheAsString());

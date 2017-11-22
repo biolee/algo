@@ -1,46 +1,37 @@
-package leetcode.DepthFirstSearch.balancedBinaryTree;// Given a binary tree, determine if it is height-balanced.
+package leetcode.DepthFirstSearch.balancedBinaryTree; // Given a binary tree, determine if it is
+                                                      // height-balanced.
 
-// For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+// For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of
+// the two subtrees of every node never differ by more than 1.
 
 import leetcode.util.TreeNode;
 
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
+ * Definition for a binary tree node. public class TreeNode { int val; TreeNode left; TreeNode
+ * right; TreeNode(int x) { val = x; } }
  */
-
-
 public class Solution {
 
-    boolean balanced = true;
+  boolean balanced = true;
 
-    public boolean isBalanced(TreeNode root) {
+  public boolean isBalanced(TreeNode root) {
 
-        height(root);
-        return balanced;
+    height(root);
+    return balanced;
+  }
 
+  private int height(TreeNode root) {
+
+    if (root == null) return 0;
+
+    int leftHeight = height(root.left);
+    int rightHeight = height(root.right);
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+
+      balanced = false;
     }
 
-    private int height(TreeNode root) {
-
-        if (root == null) return 0;
-
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-
-        if (Math.abs(leftHeight - rightHeight) > 1) {
-
-            balanced = false;
-
-        }
-
-        return 1 + Math.max(leftHeight, rightHeight);
-
-    }
-
+    return 1 + Math.max(leftHeight, rightHeight);
+  }
 }

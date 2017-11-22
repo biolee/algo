@@ -1,4 +1,6 @@
-package leetcode.HashTable;// An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word abbreviations:
+package leetcode.HashTable; // An abbreviation of a word follows the form <first
+                            // letter><number><last letter>. Below are some examples of word
+                            // abbreviations:
 
 // a) it                      --> it    (no abbreviation)
 
@@ -12,73 +14,65 @@ package leetcode.HashTable;// An abbreviation of a word follows the form <first 
 //               1
 //      1---5----0
 // d) l|ocalizatio|n          --> l10n
-// Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.
+// Assume you have a dictionary and given a word, find whether its abbreviation is unique in the
+// dictionary. A word's abbreviation is unique if no other word from the dictionary has the same
+// abbreviation.
 
-// Example: 
+// Example:
 // Given dictionary = [ "deer", "door", "cake", "card" ]
 
-// isUnique("dear") -> 
+// isUnique("dear") ->
 // false
 
-// isUnique("cart") -> 
+// isUnique("cart") ->
 // true
 
-// isUnique("cane") -> 
+// isUnique("cane") ->
 // false
 
-// isUnique("make") -> 
+// isUnique("make") ->
 // true
 
 import java.util.HashMap;
 
 public class uniqueWordAbbreviation {
 
-    HashMap<String, String> map;
+  HashMap<String, String> map;
 
-    public uniqueWordAbbreviation(String[] dictionary) {
+  public uniqueWordAbbreviation(String[] dictionary) {
 
-        this.map = new HashMap<String, String>();
+    this.map = new HashMap<String, String>();
 
-        for (String word : dictionary) {
+    for (String word : dictionary) {
 
-            String key = getKey(word);
+      String key = getKey(word);
 
-            if (map.containsKey(key)) {
+      if (map.containsKey(key)) {
 
-                if (!map.get(key).equals(word)) {
+        if (!map.get(key).equals(word)) {
 
-                    map.put(key, "");
-
-                }
-
-            } else {
-
-                map.put(key, word);
-
-            }
-
-
+          map.put(key, "");
         }
 
+      } else {
 
+        map.put(key, word);
+      }
     }
+  }
 
-    public boolean isUnique(String word) {
+  public boolean isUnique(String word) {
 
-        return !map.containsKey(getKey(word)) || map.get(getKey(word)).equals(word);
+    return !map.containsKey(getKey(word)) || map.get(getKey(word)).equals(word);
+  }
 
-    }
+  public String getKey(String word) {
 
-    public String getKey(String word) {
+    if (word.length() <= 2) return word;
 
-        if (word.length() <= 2) return word;
-
-        return word.charAt(0) + Integer.toString(word.length() - 2) + word.charAt(word.length() - 1);
-
-    }
-
+    return word.charAt(0) + Integer.toString(word.length() - 2) + word.charAt(word.length() - 1);
+  }
 }
-
 
 // Your ValidWordAbbr object will be instantiated and called as such:
 // ValidWordAbbr vwa = new ValidWordAbbr(dictionary);

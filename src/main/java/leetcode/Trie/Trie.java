@@ -14,87 +14,75 @@ import java.util.HashMap;
 
 class TrieNode {
 
-    HashMap<Character, TrieNode> map;
-    char character;
-    boolean last;
+  HashMap<Character, TrieNode> map;
+  char character;
+  boolean last;
 
-    // Initialize your data structure here.
-    public TrieNode(char character) {
+  // Initialize your data structure here.
+  public TrieNode(char character) {
 
-        this.map = new HashMap<Character, TrieNode>();
-        this.character = character;
-        this.last = false;
-
-    }
-
+    this.map = new HashMap<Character, TrieNode>();
+    this.character = character;
+    this.last = false;
+  }
 }
 
 public class Trie {
 
-    private TrieNode root;
+  private TrieNode root;
 
-    public Trie() {
+  public Trie() {
 
-        root = new TrieNode(' ');
+    root = new TrieNode(' ');
+  }
 
+  // Inserts a word into the trie.
+  public void insert(String word) {
+
+    TrieNode current = root;
+
+    for (char c : word.toCharArray()) {
+
+      if (!current.map.containsKey(c)) {
+
+        current.map.put(c, new TrieNode(c));
+      }
+
+      current = current.map.get(c);
     }
 
-    // Inserts a word into the trie.
-    public void insert(String word) {
+    current.last = true;
+  }
 
-        TrieNode current = root;
+  // Returns if the word is in the trie.
+  public boolean search(String word) {
 
-        for (char c : word.toCharArray()) {
+    TrieNode current = root;
 
-            if (!current.map.containsKey(c)) {
+    for (char c : word.toCharArray()) {
 
-                current.map.put(c, new TrieNode(c));
+      if (!current.map.containsKey(c)) return false;
 
-            }
-
-            current = current.map.get(c);
-
-        }
-
-        current.last = true;
-
+      current = current.map.get(c);
     }
 
-    // Returns if the word is in the trie.
-    public boolean search(String word) {
+    if (current.last == true) return true;
+    else return false;
+  }
 
-        TrieNode current = root;
+  // Returns if there is any word in the trie
+  // that starts with the given prefix.
+  public boolean startsWith(String prefix) {
 
-        for (char c : word.toCharArray()) {
+    TrieNode current = root;
 
-            if (!current.map.containsKey(c)) return false;
+    for (char c : prefix.toCharArray()) {
 
-            current = current.map.get(c);
+      if (!current.map.containsKey(c)) return false;
 
-        }
-
-        if (current.last == true) return true;
-        else return false;
-
+      current = current.map.get(c);
     }
 
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    public boolean startsWith(String prefix) {
-
-        TrieNode current = root;
-
-        for (char c : prefix.toCharArray()) {
-
-            if (!current.map.containsKey(c)) return false;
-
-            current = current.map.get(c);
-
-        }
-
-        return true;
-
-    }
-
+    return true;
+  }
 }
-

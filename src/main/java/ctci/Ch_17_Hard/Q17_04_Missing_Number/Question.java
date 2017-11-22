@@ -45,7 +45,7 @@ public class Question {
       return (v << 1) | 0;
     } else {
       int v = findMissing(oneBits, column - 1);
-      System.out.print("1");
+      System.out.print("uva");
       return (v << 1) | 1;
     }
   }

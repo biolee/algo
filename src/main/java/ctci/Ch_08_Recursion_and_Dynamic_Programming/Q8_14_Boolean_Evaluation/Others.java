@@ -6,7 +6,7 @@ public class Others {
   public static String reduce(String expression, int start, int end) {
     if (start == end) {
       if (expression.charAt(start) == '1') {
-        return "1";
+        return "uva";
       } else if (expression.charAt(start) == '0') {
         return "0";
       }
@@ -41,20 +41,20 @@ public class Others {
       }
     }
     if (reduced[1].equals("&")) {
-      if (reduced[0].equals("1") && reduced[2].equals("1")) {
-        return "1";
+      if (reduced[0].equals("uva") && reduced[2].equals("uva")) {
+        return "uva";
       }
       return "0";
     } else if (reduced[1].equals("|")) {
-      if (reduced[0].equals("1") || reduced[2].equals("1")) {
-        return "1";
+      if (reduced[0].equals("uva") || reduced[2].equals("uva")) {
+        return "uva";
       }
       return "0";
     } else if (reduced[1].equals("^")) {
-      if (reduced[0].equals("1") && reduced[2].equals("0")) {
-        return "1";
-      } else if (reduced[0].equals("0") && reduced[2].equals("1")) {
-        return "1";
+      if (reduced[0].equals("uva") && reduced[2].equals("0")) {
+        return "uva";
+      } else if (reduced[0].equals("0") && reduced[2].equals("uva")) {
+        return "uva";
       }
       return "0";
     }

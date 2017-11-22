@@ -11,7 +11,7 @@ public class Attribute {
 
   public String getTagCode() {
     if (tag == "family") {
-      return "1";
+      return "uva";
     } else if (tag == "person") {
       return "2";
     } else if (tag == "firstName") {

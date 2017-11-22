@@ -7,7 +7,7 @@ public class QuestionB {
   public static int count = 0;
 
   public static boolean stringToBool(String c) {
-    return c.equals("1") ? true : false;
+    return c.equals("uva") ? true : false;
   }
 
   public static int countEval(String s, boolean result, HashMap<String, Integer> memo) {

@@ -5,7 +5,8 @@ package leetcode.BreadthFirstSearch;
 // OJ's undirected graph serialization:
 // Nodes are labeled uniquely.
 
-// We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.
+// We use # as a separator for each node, and , as a separator for node label and each neighbor of
+// the node.
 // As an example, consider the serialized graph {0,1,2#1,2#2,2}.
 
 // The graph has a total of three nodes, and therefore contains three parts as separated by #.
@@ -27,49 +28,42 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Definition for undirected graph.
- * class UndirectedGraphNode {
- * int label;
- * List<UndirectedGraphNode> neighbors;
- * UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
- * };
+ * Definition for undirected graph. class UndirectedGraphNode { int label; List<UndirectedGraphNode>
+ * neighbors; UndirectedGraphNode(int x) { label = x; neighbors = new
+ * ArrayList<UndirectedGraphNode>(); } };
  */
-
 class UndirectedGraphNode {
-    int label;
-    List<UndirectedGraphNode> neighbors;
+  int label;
+  List<UndirectedGraphNode> neighbors;
 
-    UndirectedGraphNode(int x) {
-        label = x;
-        neighbors = new ArrayList<UndirectedGraphNode>();
-    }
+  UndirectedGraphNode(int x) {
+    label = x;
+    neighbors = new ArrayList<UndirectedGraphNode>();
+  }
 };
 
 public class cloneGraph {
 
-    public HashMap<Integer, UndirectedGraphNode> map = new HashMap<Integer, UndirectedGraphNode>();
+  public HashMap<Integer, UndirectedGraphNode> map = new HashMap<Integer, UndirectedGraphNode>();
 
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+  public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
 
-        if (node == null) {
-            return null;
-        }
-
-        if (map.containsKey(node.label)) {
-            return map.get(node.label);
-        }
-
-        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
-        map.put(newNode.label, newNode);
-
-        for (UndirectedGraphNode neighbor : node.neighbors) {
-
-            newNode.neighbors.add(cloneGraph(neighbor));
-
-        }
-
-        return newNode;
-
+    if (node == null) {
+      return null;
     }
 
+    if (map.containsKey(node.label)) {
+      return map.get(node.label);
+    }
+
+    UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+    map.put(newNode.label, newNode);
+
+    for (UndirectedGraphNode neighbor : node.neighbors) {
+
+      newNode.neighbors.add(cloneGraph(neighbor));
+    }
+
+    return newNode;
+  }
 }

@@ -1,5 +1,6 @@
 package leetcode.BinarySearch.ClosestBinarySearchTreeValue;
-// Given a non-empty binary algo.search tree and a target value, find the value in the BST that is closest to the target.
+// Given a non-empty binary algo.search tree and a target value, find the value in the BST that is
+// closest to the target.
 
 // Note:
 // Given target value is a floating point.
@@ -8,31 +9,21 @@ package leetcode.BinarySearch.ClosestBinarySearchTreeValue;
 import leetcode.util.TreeNode;
 
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
+ * Definition for a binary tree node. public class TreeNode { int val; TreeNode left; TreeNode
+ * right; TreeNode(int x) { val = x; } }
  */
-
-
-
 public class Solution {
-    public int closestValue(TreeNode root, double target) {
+  public int closestValue(TreeNode root, double target) {
 
-        int value = root.val;
-        TreeNode child = root.val < target ? root.right : root.left;
+    int value = root.val;
+    TreeNode child = root.val < target ? root.right : root.left;
 
-        if (child == null) {
-            return value;
-        }
-
-        int childValue = closestValue(child, target);
-
-        return Math.abs(value - target) < Math.abs(childValue - target) ? value : childValue;
-
+    if (child == null) {
+      return value;
     }
 
+    int childValue = closestValue(child, target);
+
+    return Math.abs(value - target) < Math.abs(childValue - target) ? value : childValue;
+  }
 }

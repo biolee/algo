@@ -6,7 +6,7 @@ public class Intro {
     try {
       MyObject obj1 = new MyObject();
       MyObject obj2 = new MyObject();
-      MyClass thread1 = new MyClass(obj1, "1");
+      MyClass thread1 = new MyClass(obj1, "uva");
       MyClass thread2 = new MyClass(obj2, "2");
 
       thread1.start();

@@ -1,4 +1,5 @@
-package leetcode.Queue;// Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
+package leetcode.Queue; // Given a stream of integers and a window size, calculate the moving
+                        // average of all integers in the sliding window.
 
 // For example,
 // MovingAverage m = new MovingAverage(3);
@@ -11,38 +12,30 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Your MovingAverage object will be instantiated and called as such:
- * MovingAverage obj = new MovingAverage(size);
- * double param_1 = obj.next(val);
+ * Your MovingAverage object will be instantiated and called as such: MovingAverage obj = new
+ * MovingAverage(size); double param_1 = obj.next(val);
  */
-
 public class movingAverageFromDataStream {
 
-    double previousSum = 0.0;
-    int maxSize;
-    Queue<Integer> window;
+  double previousSum = 0.0;
+  int maxSize;
+  Queue<Integer> window;
 
-    /**
-     * Initialize your data structure here.
-     */
-    public movingAverageFromDataStream(int size) {
+  /** Initialize your data structure here. */
+  public movingAverageFromDataStream(int size) {
 
-        this.maxSize = size;
-        window = new LinkedList<Integer>();
+    this.maxSize = size;
+    window = new LinkedList<Integer>();
+  }
 
+  public double next(int val) {
+    if (window.size() == maxSize) {
+
+      previousSum -= window.remove();
     }
 
-    public double next(int val) {
-        if (window.size() == maxSize) {
-
-            previousSum -= window.remove();
-
-        }
-
-        window.add(val);
-        previousSum += val;
-        return previousSum / window.size();
-
-    }
-
+    window.add(val);
+    previousSum += val;
+    return previousSum / window.size();
+  }
 }

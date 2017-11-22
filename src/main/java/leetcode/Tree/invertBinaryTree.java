@@ -1,4 +1,4 @@
-package leetcode.Tree;// Invert a binary tree.
+package leetcode.Tree; // Invert a binary tree.
 
 //      4
 //    /   \
@@ -17,28 +17,21 @@ package leetcode.Tree;// Invert a binary tree.
 import leetcode.util.TreeNode;
 
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
+ * Definition for a binary tree node. public class TreeNode { int val; TreeNode left; TreeNode
+ * right; TreeNode(int x) { val = x; } }
  */
 public class invertBinaryTree {
 
-    public TreeNode invertTree(TreeNode root) {
+  public TreeNode invertTree(TreeNode root) {
 
-        if (root == null) {
-            return root;
-        }
-
-        TreeNode temp = root.left;
-        root.left = invertTree(root.right);
-        root.right = invertTree(temp);
-
-        return root;
-
+    if (root == null) {
+      return root;
     }
 
+    TreeNode temp = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(temp);
+
+    return root;
+  }
 }

@@ -1,4 +1,5 @@
-package leetcode.BinarySearch.GuessNumberHigherOrLower;// We are playing the Guess Game. The game is as follows:
+package leetcode.BinarySearch.GuessNumberHigherOrLower; // We are playing the Guess Game. The game
+                                                        // is as follows:
 
 // I pick a number from 1 to n. You have to guess which number I picked.
 
@@ -15,55 +16,51 @@ package leetcode.BinarySearch.GuessNumberHigherOrLower;// We are playing the Gue
 // Return 6.
 
 /* The guess API is defined in the parent class GuessGame.
-   @param num, your guess
-   @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
-   int guess(int num); */
-
+@param num, your guess
+@return -1 if my number is lower, 1 if my number is higher, otherwise return 0
+int guess(int num); */
 
 class GuessGame {
-    // PH
-    public int guessNumber(int n) {
-        return 1;
-    }
+  // PH
+  public int guessNumber(int n) {
+    return 1;
+  }
 }
 
 public class Solution extends GuessGame {
 
-    @Override
-    public int guessNumber(int n) {
+  @Override
+  public int guessNumber(int n) {
 
-        return binarySearch(1, n);
+    return binarySearch(1, n);
+  }
 
+  // PH
+  int guess(int num) {
+    return num;
+  }
+
+  private int binarySearch(int start, int end) {
+
+    if (start > end) {
+      return -1;
     }
 
-    // PH
-    int guess(int num) {
-        return num;
+    if (guess(start) == 0) {
+      return start;
+    }
+    if (guess(end) == 0) {
+      return end;
     }
 
-    private int binarySearch(int start, int end) {
+    int mid = start + (end - start) / 2;
 
-        if (start > end) {
-            return -1;
-        }
-
-        if (guess(start) == 0) {
-            return start;
-        }
-        if (guess(end) == 0) {
-            return end;
-        }
-
-        int mid = start + (end - start) / 2;
-
-        if (guess(mid) == 0) {
-            return mid;
-        } else if (guess(mid) == 1) {
-            return binarySearch(mid + 1, end);
-        } else {
-            return binarySearch(start, mid - 1);
-        }
-
+    if (guess(mid) == 0) {
+      return mid;
+    } else if (guess(mid) == 1) {
+      return binarySearch(mid + 1, end);
+    } else {
+      return binarySearch(start, mid - 1);
     }
-
+  }
 }

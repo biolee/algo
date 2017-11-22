@@ -1,4 +1,5 @@
-package leetcode.LinkedList;// Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
+package leetcode.LinkedList; // Given a non-negative integer represented as non-empty a singly
+                             // linked list of digits, plus one to the integer.
 
 // You may assume the integer do not contain any leading zero, except the number 0 itself.
 
@@ -14,48 +15,37 @@ package leetcode.LinkedList;// Given a non-negative integer represented as non-e
 import leetcode.util.ListNode;
 
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
+ * Definition for singly-linked list. public class ListNode { int val; ListNode next; ListNode(int
+ * x) { val = x; } }
  */
 public class plusOneLinkedList {
 
-    public ListNode plusOne(ListNode head) {
-        
-        if(plusOneRecursive(head) == 0) {
-            
-            return head;
-            
-        }
-        
-        else {
-            
-            ListNode newHead = new ListNode(1);
-            
-            newHead.next = head;
-            
-            return newHead;
-            
-        }
-        
+  public ListNode plusOne(ListNode head) {
+
+    if (plusOneRecursive(head) == 0) {
+
+      return head;
+
+    } else {
+
+      ListNode newHead = new ListNode(1);
+
+      newHead.next = head;
+
+      return newHead;
     }
-    
-    private int plusOneRecursive(ListNode head) {
-        
-        if(head == null) return 1;
-        
-        int carry = plusOneRecursive(head.next);
-        
-        if(carry == 0) return 0;
-        
-        int value = head.val + 1;
-        head.val = value % 10;
-        return value/10;
-        
-        
-    }
-    
+  }
+
+  private int plusOneRecursive(ListNode head) {
+
+    if (head == null) return 1;
+
+    int carry = plusOneRecursive(head.next);
+
+    if (carry == 0) return 0;
+
+    int value = head.val + 1;
+    head.val = value % 10;
+    return value / 10;
+  }
 }

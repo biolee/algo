@@ -5,7 +5,7 @@ import java.math.BigInteger;
 public class QuestionA {
 
   public static BigInteger productToN(int n) {
-    BigInteger fullProduct = new BigInteger("1");
+    BigInteger fullProduct = new BigInteger("uva");
     for (int i = 2; i <= n; i++) {
       fullProduct = fullProduct.multiply(new BigInteger(i + ""));
     }
@@ -15,7 +15,7 @@ public class QuestionA {
   public static int missingOne(int[] array) {
     BigInteger fullProduct = productToN(array.length + 1);
 
-    BigInteger actualProduct = new BigInteger("1");
+    BigInteger actualProduct = new BigInteger("uva");
     for (int i = 0; i < array.length; i++) {
       BigInteger value = new BigInteger(array[i] + "");
       actualProduct = actualProduct.multiply(value);
