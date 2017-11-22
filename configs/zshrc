@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
 ZSH_THEME="agnoster"
+# NEWLINE=$'\n'
+# PROMPT='%{%f%b%k%}$(build_prompt) ${NEWLINE}zsh> '
 
 plugins=(git zsh-completions kubectl)
