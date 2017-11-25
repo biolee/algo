@@ -143,13 +143,14 @@ alias do.lac="docker container ls -a"
 alias do.cip="docker inspect --format '{{ .NetworkSettings.IPAddress }}' "
 alias do.isp="docker inspect"
 ## remove docker images
-alias do.clean.di="docker images --filter "dangling=true" -q --no-trunc | docker rmi"
-alias do.clean.ni="docker images | grep "none" | awk '/ / { print $3 }' | docker rmi"
+alias do.clean.di="docker images --filter "dangling=true" -q --no-trunc | xargs docker rmi"
+alias do.clean.ni="docker images | grep "none" | awk '/ / { print $3 }' | xargs docker rmi"
 alias do.clean.i="do.clean.ni && do.clean.di"
 ## delete dangling volumes
 alias do.clean.dv="docker volume ls -qf dangling=true | xargs docker volume rm"
 ## remove docker exited containers
 alias do.clean.ec="docker ps -qa --no-trunc --filter "status=exited" | xargs docker rm"
+alias do.clean.dang="do.clean.di && do.clean.dv && do.clean.ni"
 
 # k8s
 ## minikube https://github.com/kubernetes/minikube
@@ -198,14 +199,19 @@ alias ku.dels="ku delete service"
 # --------------- multiple lang ------------
 # JAVA
 export JAVA_HOME=$(/usr/libexec/java_home)
+alias mv.p="mvn clean package -DskipTests"
+alias mv.cdep="mvn clean compile assembly:single"
 
 # anaconda
 export ANACONDA_HOME="${HOME}/anaconda3"
 export PATH="${ANACONDA_HOME}/bin:$PATH"
 
 # CPP
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/opt/opencv3/lib/pkgconfig:${ANACONDA_HOME}/lib/pkgconfig
-
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/opt/opencv3/lib/pkgconfig:${ANACONDA_HOME}/lib/pkgconfig:${PKG_CONFIG_PATH}
+alias pkg.include="pkg-config --cflags"
+alias pkg.i="pkg-config --cflags"
+alias pkg.dylibs="pkg-config --libs"
+alias pkg.dl="pkg-config --libs"
 
 # python
 ## ipython

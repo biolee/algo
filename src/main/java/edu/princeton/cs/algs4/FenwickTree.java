@@ -42,9 +42,8 @@ package edu.princeton.cs.algs4;
  */
 public class FenwickTree {
 
-  int[]
-      array; // 1-indexed array, In this array We save cumulative information to perform efficient
-             // range queries and updates
+  int[] array; // 1-indexed array, In this array We save cumulative information to perform efficient
+  // range queries and updates
 
   public FenwickTree(int size) {
     array = new int[size + 1];

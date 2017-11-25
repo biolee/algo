@@ -1,0 +1,25 @@
+{
+  "name": "algo",
+  "version": "1.0.0",
+  "description": "- runnable util [${REPO_PATH_ALGO}/bin](./bin/)  - doc and blog [${REPO_PATH_ALGO}/doc/](./doc/) - codes [${REPO_PATH_ALGP}/src/](./src/)",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biolee/algo.git"
+  },
+  "author": "liyanan <liyananfamily@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/biolee/algo/issues"
+  },
+  "homepage": "https://github.com/biolee/algo#readme",
+  "dependencies": {
+    "benchmark": "^2.1.4"
+  }
+}

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StaticMath.h"
+#include "math.h"
 
 using namespace std;
 

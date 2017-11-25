@@ -6,10 +6,10 @@
 ```bash
 # https://docs.gitlab.com/omnibus/docker/
 docker run -d -it --name some-jenkins \
-    -p 10282:8080 \
-	-p 50000:50000 \
-	-v ${JENKINS_HOME}:/var/jenkins_home
-	registry.docker-cn.com/library/jenkins:latest
+	-p 8080:8080 \
+	-v ${JENKINS_HOME}:/var/jenkins_home 
+	-v /var/run/docker.sock:/var/run/docker.sock \
+	jenkinsci/blueocean
 # OR
 
 # ubuntu install
@@ -105,3 +105,173 @@ docker run -it --entrypoint=/bin/bash \
 	-p 8081:8018 \
 	docker.bintray.io/jfrog/artifactory-oss:latest
 ```
+
+#!groovy
+
+pipeline {
+    agent {
+        label 'master'
+    }
+    environment {
+        TEST_DB_ENGINE = 'mysql'
+        TEST_DB_HOST = ""
+        TEST_DB_PASSWD = ""
+        TEST_DB_NAME = ""
+//        AN_ACCESS_KEY = credentials('my-prefined-secret-text')
+    }
+
+    stages {
+        stage('Build') {
+            agent {
+                label 'master'
+            }
+            steps {
+                echo "No build Now"
+            }
+        }
+
+        stage("docker file") {
+            agent { dockerfile true }
+            steps {
+                sh "uname -a"
+            }
+        }
+
+        stage('Cheep Test') {
+            when {
+                branch 'master'
+            }
+            failFast true
+            parallel {
+                stage('Unit Test') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+                        echo "Unit Test"
+                    }
+                }
+
+                stage('Integration Test') {
+                    agent {
+                        docker {
+                            image 'golang:1.9'
+                            label "master"
+                            args '-v /var/run/docker.sock:/var/run/docker.sock'
+                        }
+                    }
+                    steps {
+                        sh "make test"
+                    }
+                }
+            }
+        }
+
+        stage('Expensive Test') {
+            when {
+                branch 'master'
+            }
+            failFast true
+            parallel {
+                stage('End to End Test') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+                        echo "End to End Test"
+                    }
+                }
+
+                stage('Regression Test') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+                        echo "Regression TestRegression Test"
+                    }
+                }
+
+                stage('Regression Test') {
+                    agent {
+                        dockerfile {
+                            dir '.'
+                            additionalBuildArgs '-f server/test_dockerfile/Dockerfile -t latest'
+                        }
+                    }
+                    steps {
+                        echo "Regression TestRegression Test"
+                    }
+                }
+
+                agent { dockerfile { dir 'someSubDir' } }
+            }
+
+        }
+
+        stage("Deploy") {
+            when {
+                allOf {
+                    branch 'master';
+                    environment name: 'DEPLOY_TO', value: 'production'
+                }
+            }
+            steps {
+                echo "no deploy now"
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'CI finish!'
+        }
+        changed {
+            echo "Only run if the current Pipeline run has a different status from the previously completed Pipeline."
+        }
+        failure {
+            echo "Only run if the current Pipeline has a \"failed\" status, typically denoted in the web UI with a red indication."
+        }
+        success {
+            echo "Only run if the current Pipeline has a \"success\" status, typically denoted in the web UI with a blue or green indication."
+        }
+        unstable {
+            echo "Only run if the current Pipeline has an \"unstable\" status, usually caused by test failures, code violations, etc. Typically denoted in the web UI with a yellow indication."
+        }
+        aborted {
+            echo "Only run if the current Pipeline has an \"aborted\" status, usually due to the Pipeline being manually aborted. Typically denoted in the web UI with a gray indication.\n"
+        }
+    }
+}
+
+//node {
+//    checkout scm
+//    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+//        def customImage = docker.build("my-image:${env.BUILD_ID}")
+//
+//        customImage.inside {
+//            sh 'make test'
+//        }
+//
+//        /* Push the container to the custom Registry */
+//        customImage.push()
+//        customImage.push('latest')
+//    }
+//}
+
+
+//node {
+//    checkout scm
+//    docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw"') { c ->
+//        docker.image('mysql:5').inside("--link ${c.id}:db") {
+//            /* Wait until mysql service is up */
+//            sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+//        }
+//        docker.image('centos:7').inside("--link ${c.id}:db") {
+//            /*
+//            * Run some tests which require MySQL, and assume that it is
+//            * available on the host name `db`
+//            */
+//            sh 'make check'
+//        }
+//    }
+//}

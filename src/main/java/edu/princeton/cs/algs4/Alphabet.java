@@ -50,6 +50,7 @@ public class Alphabet {
 
   /** The Unicode 16 alphabet (0-65,535). */
   public static final Alphabet UNICODE16 = new Alphabet(65536);
+
   private final int R; // the radix of the alphabet
   private char[] alphabet; // the characters in the alphabet
   private int[] inverse; // indices

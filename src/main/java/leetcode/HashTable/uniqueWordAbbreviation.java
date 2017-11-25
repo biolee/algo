@@ -1,6 +1,6 @@
 package leetcode.HashTable; // An abbreviation of a word follows the form <first
-                            // letter><number><last letter>. Below are some examples of word
-                            // abbreviations:
+// letter><number><last letter>. Below are some examples of word
+// abbreviations:
 
 // a) it                      --> it    (no abbreviation)
 

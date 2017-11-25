@@ -62,8 +62,7 @@ public class AndroidUnlockPatterns {
       totalNumber +=
           DFS(visited, skip, 2, i - 1)
               * 4; // 2, 4, 6, and 8 are symmetric so multiply this result by 4
-      totalNumber +=
-          DFS(visited, skip, 5, i - 1); // do not multiply by 4 because 5 is unique
+      totalNumber += DFS(visited, skip, 5, i - 1); // do not multiply by 4 because 5 is unique
     }
 
     return totalNumber;

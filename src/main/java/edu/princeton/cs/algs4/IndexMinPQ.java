@@ -306,7 +306,6 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
    * ************************************************************************* Iterators.
    * *************************************************************************
    */
-
   private void sink(int k) {
     while (2 * k <= n) {
       int j = 2 * k;

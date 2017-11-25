@@ -72,7 +72,7 @@ public class PatriciaSET implements Iterable<String> {
   private Node head;
   private int count;
 
-    /** Initializes an empty PATRICIA-based set. */
+  /** Initializes an empty PATRICIA-based set. */
   /* The constructor creates a head (sentinel) node that contains a
    * zero-length string.
    */
@@ -384,7 +384,7 @@ public class PatriciaSET implements Iterable<String> {
     return s.toString();
   }
 
-/* An inner Node class specifies the objects that hold each key. The b
+  /* An inner Node class specifies the objects that hold each key. The b
    * value indicates the relevant bit position.
    */
   private class Node {

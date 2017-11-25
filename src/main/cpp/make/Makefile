@@ -2,29 +2,33 @@ all:static_main dyn_main
 
 .PHONY : staticlib
 staticlib:
-	cd lib/static && \
-		g++ -c StaticMath.cpp  && \
-		ar -crv libstaticmath.a StaticMath.o
+	g++ -c math.cpp -I./include  -o build/math.o && \
+		ar -crv build/libmath.a build/math.o
 
 .PHONY : static_main
 static_main: staticlib
-	cd g++ -o static_main main_static.cpp -Ilib/static -L./lib/static -lstaticmath  && \
-		./static_main
+	g++ -o build/static_main main.cpp -I./include -L./build -l math  && \
+		./build/static_main
 
-.PHONY : dynamiclib
+.PHONY : dynamic
 dynamiclib:
-	cd lib/dynamic && \
-		g++ -fPIC -c DynamicMath.cpp && \
-		g++ -shared -o libdynmath.dylib DynamicMath.o
-		# g++ -fPIC -shared -o libdynmath.so DynamicMath.cpp
+	g++ -fPIC -c math.cpp  -I./include -o build/math.o && \
+		g++ -shared -o build/libmath.dylib build/math.o
+		# g++ -fPIC -shared -o libmath.so math.cpp
 		# mac: dylib
 		# linux: .so
-		#
 
 
 .PHONY : dyn_main
 dyn_main: dynamiclib
-	cd g++ -o dyn_main main_dynamic.cpp -Ilib/dynamic -L./lib/dynamic -ldynmath && \
-		export DYLD_LIBRARY_PATH="lib/dynamic:$LD_LIBRARY_PATH" && \
-		./dyn_main
-#		export LD_LIBRARY_PATH="lib/dynamic:$LD_LIBRARY_PATH" && \
+	g++ -o build/dyn_main main.cpp -I./include -L build -l math && \
+		export DYLD_LIBRARY_PATH="./build:$LD_LIBRARY_PATH" && \
+		./build/dyn_main
+#		linux export LD_LIBRARY_PATH="lib/dynamic:$LD_LIBRARY_PATH"
+
+clean:
+	rm build/*
+
+all:
+	make static_main
+	make dyn_main

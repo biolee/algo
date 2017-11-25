@@ -75,7 +75,7 @@ public class PatriciaST<Value> {
   private Node head;
   private int count;
 
-    /** Initializes an empty PATRICIA-based symbol table. */
+  /** Initializes an empty PATRICIA-based symbol table. */
   /* The constructor creates a head (sentinel) node that contains a
    * zero-length string.
    */
@@ -401,7 +401,7 @@ public class PatriciaST<Value> {
     }
   }
 
-/* An inner Node class specifies the objects that hold each key-value pair.
+  /* An inner Node class specifies the objects that hold each key-value pair.
    * The b value indicates the relevant bit position.
    */
   private class Node {

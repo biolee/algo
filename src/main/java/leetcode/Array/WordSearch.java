@@ -36,6 +36,7 @@ public class WordSearch {
 
   public boolean search(char[][] board, int i, int j, char[] w, int index) {
 
+
     if (index == w.length) {
       return true;
     }

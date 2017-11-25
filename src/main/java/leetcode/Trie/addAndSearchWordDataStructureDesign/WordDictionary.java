@@ -1,5 +1,5 @@
 package leetcode.Trie.addAndSearchWordDataStructureDesign; // Design a data structure that supports
-                                                           // the following two operations:
+// the following two operations:
 
 // void addWord(word)
 // bool algo.search(word)

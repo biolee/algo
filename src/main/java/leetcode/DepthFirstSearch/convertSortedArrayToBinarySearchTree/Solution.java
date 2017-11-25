@@ -1,8 +1,8 @@
 package leetcode.DepthFirstSearch.convertSortedArrayToBinarySearchTree; // Given an array where
-                                                                        // elements are sorted in
-                                                                        // ascending order, convert
-                                                                        // it to a height balanced
-                                                                        // BST.
+// elements are sorted in
+// ascending order, convert
+// it to a height balanced
+// BST.
 
 import leetcode.util.TreeNode;
 

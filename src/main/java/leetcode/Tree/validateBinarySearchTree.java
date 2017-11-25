@@ -1,5 +1,5 @@
 package leetcode.Tree; // Given a binary tree, determine if it is a valid binary algo.search tree
-                       // (BST).
+// (BST).
 
 // Assume a BST is defined as follows:
 
