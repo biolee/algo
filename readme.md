@@ -4,6 +4,7 @@
 - codes [${REPO_PATH_ALGP}/src/](./src/)
 
 # Blog Index
+- 2017.12.02 [how tidb test](./doc/JeffDean/how-tidb-test.md)
 - 2017.11.25 [js event loop](./src/main/js/event_loop)
 - 2017.11.25 [function call pass by what?](./doc/blog/function_call_pass_by_what.md)
 - 2017.11.25 [Pro-grammer roadmap](https://github.com/biolee/pro-grammer)
