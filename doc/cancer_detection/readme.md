@@ -4,11 +4,11 @@
 |:----:|-----:|------:|--------:|
 |2016|400|240|160|
 |2017 train|500|313|187|
-|2017 test(no ground truth)|500|*|*|
+|2017 test(no ground truth)|500|?|?|
 
 # Evaluation
 
-癌症分级金标准是`TMN`, 这里评估N, 这里是简化版N
+癌症分级金标准是`TMN`, 这里评估N, 并且是简化版的N
 
 输入数据是一人五张WSI， 一张WSI对应一个淋巴结，一张WSI可以分为5类:
 
@@ -24,6 +24,8 @@
 * pN1mi: Micro-metastases found, but no macro-metastases found.
 * pN1: Metastases found in 1–3 lymph nodes, of which at least one is a macro-metastasis.
 * pN2: Metastases found in 4–9 lymph nodes, of which at least one is a macro-metastasis.
+
+最后使用对test集中500个人的5分类的[kappa score](https://www.wikiwand.com/en/Cohen's_kappa)来排名
 
 # 思路
 
