@@ -115,6 +115,76 @@ gRPC能够自动生成多个语言的client code
               oneofs: true    // includes virtual oneof fields set to the present field's name
             });
          ```
+- Json 
+	- cpp
+		- header `#include <google/protobuf/util/json_util.h>`
+		- [doc](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.util.json_util) 
+		- google::protobuf::util::MessageToJsonString
+		```cpp
+		util::Status util::MessageToJsonString(
+                const Message & message,
+                string * output,
+                const JsonOptions & options)
+		```
+		- google::protobuf::util::JsonStringToMessage
+		```cpp
+		util::Status util::JsonStringToMessage(
+                          const string & input,
+                          Message * message,
+                          const JsonParseOptions & options)
+		```
+		- google::protobuf::util::BinaryToJsonStream
+		```cpp
+		util::Status util::BinaryToJsonStream(
+                TypeResolver * resolver,
+                const string & type_url,
+                io::ZeroCopyInputStream * binary_input,
+                io::ZeroCopyOutputStream * json_output,
+                const JsonPrintOptions & options)
+        ```
+        - google::protobuf::util::JsonToBinaryStream
+        ```cpp
+        util::Status util::JsonToBinaryStream(
+                TypeResolver * resolver,
+                const string & type_url,
+                io::ZeroCopyInputStream * json_input,
+                io::ZeroCopyOutputStream * binary_output,
+                const JsonParseOptions & options)
+        ```
+    - go
+        - `import "github.com/golang/protobuf/jsonpb"`
+        - `func Unmarshal(r io.Reader, pb proto.Message) error`
+        - `func UnmarshalNext(dec *json.Decoder, pb proto.Message) error`
+        - `func UnmarshalString(str string, pb proto.Message) error`
+        - `func (m *Marshaler) Marshal(out io.Writer, pb proto.Message) error`
+        - `func (m *Marshaler) MarshalToString(pb proto.Message) (string, error)`
+    - java
+        - `com.google.protobuf.util.JsonFormat`
+            - `public static JsonFormat.Printer printer()`
+            - `public static JsonFormat.Parser parser()`
+        - `com.google.protobuf.util.JsonFormat.Parser` merge
+        ```java
+		public void merge(String json,
+                          Message.Builder builder)
+                   throws InvalidProtocolBufferException
+		```
+		```java
+		public void merge(Reader json,
+                          Message.Builder builder)
+                   throws IOException
+		```
+		- `com.google.protobuf.util.JsonFormat.Printer`
+		```java
+		public String print(MessageOrBuilder message)
+                     throws InvalidProtocolBufferException
+		```
+	- python
+		- `from google.protobuf.json_format import MessageToJson,Parse`
+		- `MessageToJson(message, including_default_value_fields=False)-> json_string`
+		- `Parse(text, message, ignore_unknown_fields=False) -> message`
+		- err
+			- `SerializeToJsonError`
+			- `ParseError`
 - gRPC Error
 	- cpp
 		- server
